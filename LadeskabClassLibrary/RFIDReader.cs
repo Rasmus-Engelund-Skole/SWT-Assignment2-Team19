@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    internal class RFIDReader
+    public class RFIDReader: IRFIDReaders
     {
     }
 }

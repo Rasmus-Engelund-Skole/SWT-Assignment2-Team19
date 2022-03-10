@@ -6,7 +6,32 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    internal class Interfaces
+    
+    public interface IDoor
     {
+        public void LockDoor();
+
+        public void UnlockDoor();
     }
+
+    public interface IDisplay
+    {
+
+    }
+
+    public interface IChargeControl
+    {
+        bool Connected { get; set; }
+
+        public void StartCharge();
+
+        public void StopCharge();
+
+    }
+
+    public interface IRFIDReaders
+    {
+
+    }
+
 }

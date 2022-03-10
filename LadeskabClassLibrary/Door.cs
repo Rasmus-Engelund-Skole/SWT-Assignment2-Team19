@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    internal class Door
+    public class Door : IDoor
     {
+        public Door()
+        { }
+        void IDoor.LockDoor()
+        {
+
+        }
+
+       void IDoor.UnlockDoor()
+       { 
+        
+       }
+
     }
 }

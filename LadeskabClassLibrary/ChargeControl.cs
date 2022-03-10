@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    internal class ChargeControl
-    {
+   public class ChargeControl : IChargeControl
+   {
+        bool IChargeControl.Connected { get; set; }
+
+        void IChargeControl.StartCharge()
+        { }
+
+        void IChargeControl.StopCharge()
+        { }
     }
 }
