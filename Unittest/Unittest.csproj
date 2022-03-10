@@ -18,4 +18,9 @@
     <PackageReference Include="NunitXml.TestLogger" Version="3.0.117" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Assignment2\Console App.csproj" />
+    <ProjectReference Include="..\LadeskabClassLibrary\LadeskabClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -8,6 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LadeskabClassLibrary", "LadeskabClassLibrary\LadeskabClassLibrary.csproj", "{C5B21D8E-DFF3-42FE-AFF2-C584E6AAF3E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittest", "Unittest\Unittest.csproj", "{75516A6D-3D5B-405B-AF5D-47776071A684}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61E71965-EE7F-4EFB-B057-91232CFF8235} = {61E71965-EE7F-4EFB-B057-91232CFF8235}
+		{C5B21D8E-DFF3-42FE-AFF2-C584E6AAF3E7} = {C5B21D8E-DFF3-42FE-AFF2-C584E6AAF3E7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
