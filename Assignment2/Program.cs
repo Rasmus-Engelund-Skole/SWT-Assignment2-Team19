@@ -1,7 +1,7 @@
 ﻿using LadeskabClassLibrary;
 class Program
 {
-    static void Main(string[] args)
+    void Main(string[] args)
     {
         // Assemble your system here from all the classes
         var door = new Door();
@@ -35,7 +35,7 @@ class Program
                     string idString = System.Console.ReadLine();
 
                     int id = Convert.ToInt32(idString);
-                    rfidReader.OnRFIDDetected(id);
+                    rfidReader.SetID(id);
                     break;
 
                 default:

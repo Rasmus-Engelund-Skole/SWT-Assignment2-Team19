@@ -15,10 +15,18 @@ namespace LadeskabClassLibrary
 
 
 
+        public void SetID(int newID)
+        {
+            if (newID != CurrentID)
+            {
+                OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
+                CurrentID = newID;
+            }
+        }
 
 
 
-        private void OnRFIDDetected()
+        private void OnRFIDDetected(RFIDDetectedEventArgs e)
         {
             RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs() { ID = this.CurrentID });
         }
