@@ -10,17 +10,17 @@ namespace LadeskabClassLibrary
     {
         int ITimeProvider.getHour()
         {
-            throw new NotImplementedException();
+            return DateTime.Now.Hour;
         }
 
         int ITimeProvider.getMinute()
         {
-            throw new NotImplementedException();
+            return DateTime.Now.Minute;
         }
 
         int ITimeProvider.getSecond()
         {
-            throw new NotImplementedException();
+            return DateTime.Now.Second;
         }
     }
 }
