@@ -5,6 +5,7 @@ class Program
     {
         // Assemble your system here from all the classes
         var door = new Door();
+        var rfidReader = new RFIDReader(); 
 
 
         bool finish = false;

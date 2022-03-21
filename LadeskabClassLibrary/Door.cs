@@ -22,7 +22,14 @@ namespace LadeskabClassLibrary
         
        }
 
+        public void OnDoorOpen()
+        { }
 
+        public void OnDoorClose()
+        { }
+
+
+        public event EventHandler<DoorStateChangedEventArgs> DoorStateChangedEventArgs;
 
     }
 }

@@ -10,7 +10,6 @@ namespace LadeskabClassLibrary
     {
         bool Connected { get; set; }
 
-
         public void StartCharge();
 
         public void StopCharge();
