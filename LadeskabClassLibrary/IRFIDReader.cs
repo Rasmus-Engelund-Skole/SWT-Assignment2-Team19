@@ -13,6 +13,9 @@ namespace LadeskabClassLibrary
     }
     public class IRFIDReader
     {
+        // Direct access to the current ID
+        int CurrentID { get; }
+
         // Event triggered on new ID value
         event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
     }
