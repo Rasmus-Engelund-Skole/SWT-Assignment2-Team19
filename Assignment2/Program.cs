@@ -1,7 +1,7 @@
 ﻿using LadeskabClassLibrary;
 class Program
 {
-    static void Main(string[] args)
+    void Main(string[] args)
     {
         // Assemble your system here from all the classes
         var door = new Door();
