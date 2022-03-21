@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
+    
     public class Door : IDoor
     {
         public Door()
         { }
+
         void IDoor.LockDoor()
         {
 
@@ -19,6 +21,8 @@ namespace LadeskabClassLibrary
        { 
         
        }
+
+
 
     }
 }

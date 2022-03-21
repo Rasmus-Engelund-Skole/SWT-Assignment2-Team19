@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-  
-    
-
-    public interface IRFIDReaders
+    public interface IChargeControl
     {
+        bool Connected { get; set; }
+
+
+        public void StartCharge();
+
+        public void StopCharge();
 
     }
-
 }
