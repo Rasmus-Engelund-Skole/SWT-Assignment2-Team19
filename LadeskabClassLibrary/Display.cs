@@ -8,5 +8,9 @@ namespace LadeskabClassLibrary
 {
     internal class Display
     {
+        public void ShowMessage()
+        {
+
+        }
     }
 }

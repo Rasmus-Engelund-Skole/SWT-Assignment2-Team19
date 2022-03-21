@@ -8,6 +8,6 @@ namespace LadeskabClassLibrary
 {
     public interface IDisplay
     {
-
+        void ShowMessage(string message);
     }
 }
