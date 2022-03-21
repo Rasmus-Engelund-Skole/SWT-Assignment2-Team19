@@ -10,6 +10,8 @@ namespace LadeskabClassLibrary
    {
         bool IChargeControl.Connected { get; set; }
 
+        bool IChargeControl.IsConnected { get; set; }
+
         void IChargeControl.StartCharge()
         { }
 
