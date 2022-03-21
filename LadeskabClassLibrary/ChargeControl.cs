@@ -15,5 +15,7 @@ namespace LadeskabClassLibrary
 
         void IChargeControl.StopCharge()
         { }
-    }
+
+
+   }
 }

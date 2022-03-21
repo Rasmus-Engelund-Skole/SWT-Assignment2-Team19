@@ -1,8 +1,11 @@
-﻿class Program
+﻿using LadeskabClassLibrary;
+class Program
 {
     static void Main(string[] args)
     {
         // Assemble your system here from all the classes
+        var door = new Door();
+
 
         bool finish = false;
         do

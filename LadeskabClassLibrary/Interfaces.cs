@@ -23,6 +23,8 @@ namespace LadeskabClassLibrary
     {
         bool Connected { get; set; }
 
+        USBChip Chip;
+
         public void StartCharge();
 
         public void StopCharge();
