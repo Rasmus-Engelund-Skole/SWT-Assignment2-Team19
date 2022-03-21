@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    
+
     public class Door : IDoor
     {
         public Door()
@@ -17,16 +17,20 @@ namespace LadeskabClassLibrary
 
         }
 
-       void IDoor.UnlockDoor()
-       { 
+        void IDoor.UnlockDoor()
+        {
+
+        }
+
+        public void OnDoorStateChanged()
+        { 
+        }
+
+        public void SetDoorState(bool DoorOpen)
+        {
         
-       }
+        }
 
-        public void OnDoorOpen()
-        { }
-
-        public void OnDoorClose()
-        { }
 
 
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChangedEventArgs;

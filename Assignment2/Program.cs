@@ -23,11 +23,11 @@ class Program
                     break;
 
                 case 'O':
-                    door.OnDoorOpen();
+                    door.OnDoorStateChanged();
                     break;
 
                 case 'C':
-                    door.OnDoorClose();
+                    door.OnDoorStateChanged();
                     break;
 
                 case 'R':
@@ -35,7 +35,7 @@ class Program
                     string idString = System.Console.ReadLine();
 
                     int id = Convert.ToInt32(idString);
-                    rfidReader.OnRfidRead(id);
+                    rfidReader.OnRFIDDetected(id);
                     break;
 
                 default:
