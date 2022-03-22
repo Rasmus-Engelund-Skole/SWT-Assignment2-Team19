@@ -23,16 +23,18 @@ namespace LadeskabClassLibrary
         private int _oldId;
         private IDoor _door;
         private IDisplay _display;
+        private ILogfile _logfile;
 
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
-        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display)
+        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile)
         {
             _door = Door;
             _charger = Charger;
             _display = Display;
+            _logfile = Logfile;
 
             _state = LadeskabState.Available;
 
