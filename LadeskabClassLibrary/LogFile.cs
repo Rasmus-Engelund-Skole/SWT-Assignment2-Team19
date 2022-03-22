@@ -11,7 +11,7 @@ namespace LadeskabClassLibrary
     {
         public string LogFile { get; set; }
 
-        StreamWriter ILogfile.AppText(string logfile)
+        StreamWriter AppText(string logfile)
         {
             return File.AppendText(logfile);
         }
