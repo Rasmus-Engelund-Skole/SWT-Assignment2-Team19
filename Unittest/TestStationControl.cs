@@ -30,12 +30,17 @@ namespace LadeskabClassLibrary
             _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile);
         }
         
-        [Test]
-        public void StationControl_RecievesEventfromRFID()
-        {
-            RFIDReader.SetID(1);
+        
 
-            Assert.That(_uut., Is.True);
+        [Test]
+        [TestCase(1,1)]
+        [TestCase(2,2)]
+        [TestCase(3,3)]
+        [TestCase(int.MaxValue,int.MaxValue)]
+        public void StationControl_RecievesEventfromRFID(int id, int result)
+        {
+            RFIDReader.SetID(id);
+            Assert.That(_uut._oldId, Is.EqualTo(result));
         }
 
     }
