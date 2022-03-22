@@ -10,7 +10,7 @@ namespace LadeskabClassLibrary
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        private enum LadeskabState
+        public enum LadeskabState
         {
             Available,
             Locked,
@@ -18,7 +18,7 @@ namespace LadeskabClassLibrary
         };
 
         // Her mangler flere member variable
-        private LadeskabState _state;
+        public LadeskabState _state { get; private set; }
         private IChargeControl _charger;
         private IDoor _door;
         private IDisplay _display;
@@ -37,6 +37,7 @@ namespace LadeskabClassLibrary
 
             _oldId = 0;
             _state = LadeskabState.Available;
+            _charger.Connected = false;
             _logfile.LogFile = "logfile.txt"; // Navnet på systemets log-fil
         }
 

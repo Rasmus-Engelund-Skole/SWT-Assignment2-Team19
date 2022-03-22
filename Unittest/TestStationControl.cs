@@ -29,8 +29,24 @@ namespace LadeskabClassLibrary
             RFIDReader = new RFIDReader();
             _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile);
         }
-        
-        
+
+
+
+
+        [Test]
+        public void StationControl_connectedfalse_nofunctionscalled()
+        {
+            RFIDReader.SetID(1);
+
+
+            _fakeDoor.DidNotReceive().LockDoor();
+            _fakeChargeControl.DidNotReceive().StartCharge();
+            _fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
+        }
+
+
+
+
 
         [Test]
         [TestCase(1,1)]
