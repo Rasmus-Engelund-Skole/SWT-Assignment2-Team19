@@ -8,6 +8,9 @@ namespace LadeskabClassLibrary
 {
     public interface ILogFile
     {
+        public string logFile { get; set; }
+
+        public StreamWriter AppText(string logfile);
 
     }
 }
