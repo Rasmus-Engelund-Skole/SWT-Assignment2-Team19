@@ -11,7 +11,7 @@ namespace Unittest
     [TestFixture]
     public class StationControlTest
     {
-        private StationControlTest
+        private StationControlTest _uut;
 
     }
 }
