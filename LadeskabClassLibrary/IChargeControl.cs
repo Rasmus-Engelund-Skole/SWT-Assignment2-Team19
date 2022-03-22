@@ -16,5 +16,7 @@ namespace LadeskabClassLibrary
 
         public void StopCharge();
 
+       
+
     }
 }
