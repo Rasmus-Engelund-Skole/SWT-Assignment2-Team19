@@ -20,7 +20,7 @@ namespace LadeskabClassLibrary
 
         public void SetID(int newID)
         {
-            if (newID < 0)
+            if (newID > 0)
             {
                 if (newID != CurrentID)
                 {
