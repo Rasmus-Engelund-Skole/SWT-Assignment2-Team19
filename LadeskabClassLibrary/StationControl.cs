@@ -35,6 +35,7 @@ namespace LadeskabClassLibrary
             _display = Display;
             _logfile = Logfile;
 
+            _oldId = 0;
             _state = LadeskabState.Available;
             _logfile.LogFile = "logfile.txt"; // Navnet på systemets log-fil
         }

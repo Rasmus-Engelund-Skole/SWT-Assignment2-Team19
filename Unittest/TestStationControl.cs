@@ -35,7 +35,7 @@ namespace LadeskabClassLibrary
         {
             RFIDReader.SetID(1);
 
-            Assert.That(_uut.Connected, Is.True);
+            Assert.That(_uut., Is.True);
         }
 
     }
