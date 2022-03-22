@@ -9,9 +9,11 @@ namespace LadeskabClassLibrary
 {
     public class Logfile : ILogfile
     {
-        void ILogfile.AppText(string logfile)
+        public string LogFile { get; set; }
+
+        StreamWriter AppText(string logfile)
         {
-            File.AppendText(logfile);
+            return File.AppendText(logfile);
         }
     }
 }
