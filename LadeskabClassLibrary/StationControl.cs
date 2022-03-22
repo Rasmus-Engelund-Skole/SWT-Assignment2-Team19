@@ -22,17 +22,20 @@ namespace LadeskabClassLibrary
         private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
-
+        private IDisplay _display;
 
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
-        public StationControl(IDoor Door, IChargeControl Charger)
+        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display)
         {
             _door = Door;
             _charger = Charger;
+            _display = Display;
+
             _state = LadeskabState.Available;
+
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
