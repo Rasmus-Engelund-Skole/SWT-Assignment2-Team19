@@ -7,11 +7,8 @@ using System.IO;
 
 namespace LadeskabClassLibrary
 {
-    public class Logfile : ILogfile
+    public class LogFile : ILogFile
     {
-        void ILogfile.AppText(string logfile)
-        {
-            File.AppendText(logfile);
-        }
+
     }
 }

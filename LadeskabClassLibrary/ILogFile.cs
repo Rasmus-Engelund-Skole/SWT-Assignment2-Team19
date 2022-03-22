@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    public interface ILogfile
+    public interface ILogFile
     {
-        public void AppText(string logfile);
 
     }
 }
