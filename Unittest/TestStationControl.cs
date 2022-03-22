@@ -35,6 +35,17 @@ namespace LadeskabClassLibrary
 
 
         [Test]
+        public void ConnectedFalse_StateisAvailable()
+        {
+
+            Assert.That(_uut._oldId, Is.EqualTo(0));
+            Assert.That(_fakeChargeControl.Connected, Is.EqualTo(false));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
+
+        }
+
+
+        [Test]
         public void StationControl_connectedfalse_nofunctionscalled()
         {
             RFIDReader.SetID(1);
@@ -42,15 +53,9 @@ namespace LadeskabClassLibrary
 
             _fakeDoor.DidNotReceive().LockDoor();
             _fakeChargeControl.DidNotReceive().StartCharge();
+            Assert.That(_uut._oldId, Is.EqualTo(0));
             _fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
-        }
-
-        [Test]
-        public void ConnectedFalse_StateisAvailable()
-        {
-            Assert.That(_fakeChargeControl.Connected, Is.EqualTo(false));
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
-
         }
 
 
