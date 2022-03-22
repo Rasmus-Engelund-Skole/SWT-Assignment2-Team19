@@ -31,15 +31,19 @@ namespace LadeskabClassLibrary
 
 
         // Her mangler constructor
-        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile, IRFIDReader RFIDReader)
+        public StationControl(IDoor Door,
+                              IChargeControl Charger,
+                              IDisplay Display,
+                              ILogfile Logfile,
+                              IRFIDReader RFIDReader)
         {
             _door = Door;
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
             _door.DoorStateChanged += HandleDoorStateChangedEvent;
-            RFIDReader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
             _reader = RFIDReader;
+            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
 
             _oldId = 0;
             _state = LadeskabState.Available;
@@ -52,7 +56,8 @@ namespace LadeskabClassLibrary
 
         private void HandleRFIDDetectedEvent(object sender, RFIDDetectedEventArgs e)
         {
-            RfidDetected(e.ID);
+            int id = e.ID;
+            RfidDetected(id);
         }
 
         private void HandleDoorStateChangedEvent(object sender, DoorStateChangedEventArgs e)
