@@ -19,6 +19,7 @@ namespace LadeskabClassLibrary
 
         // Her mangler flere member variable
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
+        public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
         public LadeskabState _state { get; private set; }
         private IChargeControl _charger;
         private IDoor _door;
@@ -36,7 +37,7 @@ namespace LadeskabClassLibrary
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
-
+            _door.DoorStateChanged += HandleDoorStateChangedEvent;
             RFIDReader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
             _reader = RFIDReader;
 
@@ -52,6 +53,11 @@ namespace LadeskabClassLibrary
         private void HandleRFIDDetectedEvent(object sender, RFIDDetectedEventArgs e)
         {
             RfidDetected(e.ID);
+        }
+
+        private void HandleDoorStateChangedEvent(object sender, DoorStateChangedEventArgs e)
+        {
+            DoorStateChangedFunc(e._DoorOpen);
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -109,5 +115,12 @@ namespace LadeskabClassLibrary
         }
 
         // Her mangler de andre trigger handlere
+        private void DoorStateChangedFunc(bool DoorOpen)
+        {
+
+
+
+        }
+    
     }
 }

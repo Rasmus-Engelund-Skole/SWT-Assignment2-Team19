@@ -23,11 +23,11 @@ class Program
                     break;
 
                 case 'O':
-                    door.OnDoorStateChanged();
+                    door.SetDoorState(true);
                     break;
 
                 case 'C':
-                    door.OnDoorStateChanged();
+                    door.SetDoorState(false);
                     break;
 
                 case 'R':

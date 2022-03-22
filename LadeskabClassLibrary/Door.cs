@@ -11,18 +11,17 @@ namespace LadeskabClassLibrary
     {
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
 
-        public bool State { set; get; }
+        public bool DoorOpen { set; get; }
 
         public Door()
         {
-            State = true;
+            DoorOpen = true;
         }
 
-        void IDoor.LockDoor()
+        public void LockDoor()
         {
-            if (!State)
+            if (!DoorOpen)
             {
-                OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = false });
             }
             else
             {
@@ -30,21 +29,29 @@ namespace LadeskabClassLibrary
             }
         }
 
-        void IDoor.UnlockDoor()
+        public void UnlockDoor()
         {
-            if (State)
+            if (!DoorOpen)
+            {
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void SetDoorState(bool DoorState)
+        {
+            if (DoorState != DoorOpen)
             {
                 OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = true });
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+
         }
 
         private void OnDoorStateChanged(DoorStateChangedEventArgs e)
         {
-            DoorStateChanged?.Invoke(this, new DoorStateChangedEventArgs() { _DoorOpen = this.State });
+            DoorStateChanged?.Invoke(this,e);
         }
 
 
