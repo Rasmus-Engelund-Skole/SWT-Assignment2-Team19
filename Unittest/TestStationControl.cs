@@ -14,8 +14,9 @@ namespace LadeskabClassLibrary
         private ITimeProvider _fakeTimeProvider;
         private IDoor _fakeDoor;
         private IChargeControl _fakeChargeControl;
-        private IRFIDReader _fakeRFIDReader;
+        private RFIDReader RFIDReader;
         private ILogfile _fakeLogfile;
+        private IDisplay _fakeDisplay;
 
         [SetUp]
         public void Setup()
@@ -24,13 +25,17 @@ namespace LadeskabClassLibrary
             _fakeDoor = Substitute.For<IDoor>();
             _fakeChargeControl = Substitute.For<IChargeControl>();
             _fakeLogfile = Substitute.For<ILogfile>();
-        
+            _fakeDisplay = Substitute.For<IDisplay>();
+            RFIDReader = new RFIDReader();
+            _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile);
         }
         
         [Test]
-        public void GetHour()
+        public void StationControl_RecievesEventfromRFID()
         {
+            RFIDReader.SetID(1);
 
+            Assert.That(_uut.Connected, Is.True);
         }
 
     }
