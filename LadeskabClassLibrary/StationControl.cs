@@ -20,10 +20,10 @@ namespace LadeskabClassLibrary
         // Her mangler flere member variable
         private LadeskabState _state;
         private IChargeControl _charger;
-        private int _oldId;
         private IDoor _door;
         private IDisplay _display;
         private ILogfile _logfile;
+        public int _oldId;
 
 
 
