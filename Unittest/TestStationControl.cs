@@ -10,6 +10,7 @@ namespace LadeskabClassLibrary
 {
     public class TestStationControl
     {
+
         private StationControl _uut;
         private ITimeProvider _fakeTimeProvider;
         private IDoor _fakeDoor;
@@ -44,7 +45,13 @@ namespace LadeskabClassLibrary
             _fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
         }
 
+        [Test]
+        public void ConnectedFalse_StateisAvailable()
+        {
+            Assert.That(_fakeChargeControl.Connected, Is.EqualTo(false));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
 
+        }
 
 
 
