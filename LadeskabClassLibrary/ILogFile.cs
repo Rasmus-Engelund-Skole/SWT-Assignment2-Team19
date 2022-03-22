@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-    public interface ILogFile
+    public interface ILogfile
     {
         public string logFile { get; set; }
 
