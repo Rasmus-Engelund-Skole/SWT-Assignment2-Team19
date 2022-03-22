@@ -19,12 +19,26 @@ namespace LadeskabClassLibrary
             _uut = new RFIDReader();
         }
 
+        [Test]
         public void Setid_positiv_int()
         {
             _uut.SetID(10);
 
             Assert.That(_uut.CurrentID == 10);
 
+        }
+
+        [Test]
+        public void Setid_Negativ_int()
+        {
+            try
+            {
+                _uut.SetID(-10);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
         }
 
 

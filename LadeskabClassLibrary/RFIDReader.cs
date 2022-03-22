@@ -17,11 +17,19 @@ namespace LadeskabClassLibrary
 
         public void SetID(int newID)
         {
-            if (newID != CurrentID)
+            if (newID < 0)
             {
-                OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
-                CurrentID = newID;
+                if (newID != CurrentID)
+                {
+                    OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
+                    CurrentID = newID;
+                }
             }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
         }
 
 
