@@ -26,7 +26,7 @@ namespace LadeskabClassLibrary
         { 
         }
 
-        public void SetDoorState(bool DoorOpen)
+        void IDoor.SetDoorState(bool DoorOpen)
         {
         
         }
