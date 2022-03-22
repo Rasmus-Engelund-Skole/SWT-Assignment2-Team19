@@ -8,6 +8,7 @@ namespace LadeskabClassLibrary
 {
    public class ChargeControl : IChargeControl
    {
+        
         bool IChargeControl.Connected { get; set; }
 
         bool IChargeControl.IsConnected { get; set; }
