@@ -13,7 +13,7 @@ namespace LadeskabClassLibrary
         private StationControl _uut;
         private ITimeProvider _fakeTimeProvider;
         private IDoor _fakeDoor;
-        private IChargeControl _fakeChargeControl;
+        public IChargeControl _fakeChargeControl;
         private RFIDReader RFIDReader;
         private ILogfile _fakeLogfile;
         private IDisplay _fakeDisplay;
@@ -37,9 +37,14 @@ namespace LadeskabClassLibrary
         [TestCase(2,2)]
         [TestCase(3,3)]
         [TestCase(int.MaxValue,int.MaxValue)]
-        public void StationControl_RecievesEventfromRFID(int id, int result)
+        public void StationControl_RecievesIDfromRFID(int id, int result)
         {
+            _fakeChargeControl.Connected = true;
+
             RFIDReader.SetID(id);
+            _uut.
+
+
             Assert.That(_uut._oldId, Is.EqualTo(result));
         }
 
