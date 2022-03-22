@@ -36,7 +36,7 @@ namespace LadeskabClassLibrary
             _logfile = Logfile;
 
             _state = LadeskabState.Available;
-
+            _logfile.LogFile = "logfile.txt"; // Navnet på systemets log-fil
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
