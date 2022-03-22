@@ -13,7 +13,10 @@ namespace LadeskabClassLibrary
         // Event triggered on new ID value
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
 
-
+        public RFIDReader()
+        {
+            CurrentID = 0;
+        }
 
         public void SetID(int newID)
         {
