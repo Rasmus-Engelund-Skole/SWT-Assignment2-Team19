@@ -9,8 +9,8 @@ namespace LadeskabClassLibrary
 {
     public class Logfile : ILogfile
     {
+        public string LogFile { get; set; }
 
-        public string logFile = "logfile.txt"; // Navnet på systemets log-fil
         StreamWriter ILogfile.AppText(string logfile)
         {
             return File.AppendText(logfile);
