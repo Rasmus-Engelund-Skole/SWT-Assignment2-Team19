@@ -59,7 +59,6 @@ namespace LadeskabClassLibrary
         }
 
 
-
         [Test]
         [TestCase(1,1)]
         [TestCase(2,2)]

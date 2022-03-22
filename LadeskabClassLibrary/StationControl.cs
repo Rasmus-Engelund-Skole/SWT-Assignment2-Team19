@@ -18,27 +18,39 @@ namespace LadeskabClassLibrary
         };
 
         // Her mangler flere member variable
+        public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
         public LadeskabState _state { get; private set; }
         private IChargeControl _charger;
         private IDoor _door;
         private IDisplay _display;
         private ILogfile _logfile;
+        public IRFIDReader _reader;
         public int _oldId;
 
 
 
         // Her mangler constructor
-        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile)
+        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile, IRFIDReader RFIDReader)
         {
             _door = Door;
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
+            _reader = RFIDReader;
+            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
 
             _oldId = 0;
             _state = LadeskabState.Available;
             _charger.Connected = false;
             _logfile.LogFile = "logfile.txt"; // Navnet på systemets log-fil
+
+        }
+
+
+
+        private void HandleRFIDDetectedEvent(object sender, RFIDDetectedEventArgs e)
+        {
+            RfidDetected(e.ID);
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen

@@ -39,7 +39,7 @@ namespace LadeskabClassLibrary
 
         private void OnRFIDDetected(RFIDDetectedEventArgs e)
         {
-            RFIDDetectedEvent?.Invoke(this, new RFIDDetectedEventArgs() { ID = this.CurrentID });
+            RFIDDetectedEvent?.Invoke(this, e);
         }
     }
 }
