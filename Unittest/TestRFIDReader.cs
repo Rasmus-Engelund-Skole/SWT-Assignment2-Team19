@@ -29,7 +29,7 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
-        public void Setid_Negativ_int()
+        public void Setid_Negativ_int_ThrowsException()
         {
             try
             {
@@ -41,6 +41,6 @@ namespace LadeskabClassLibrary
             }
         }
 
-
+       
     }
 }

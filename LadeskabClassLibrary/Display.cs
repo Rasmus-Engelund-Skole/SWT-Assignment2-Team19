@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace LadeskabClassLibrary
 {
-    internal class Display
+    public class Display : IDisplay
     {
-        public void ShowMessage()
+        void IDisplay.ShowMessage(string message)
         {
-
+            Console.WriteLine(message);
         }
+
+
     }
 }
