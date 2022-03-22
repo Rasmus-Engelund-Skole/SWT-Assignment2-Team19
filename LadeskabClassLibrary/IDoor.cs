@@ -20,6 +20,6 @@ namespace LadeskabClassLibrary
         bool State { set; get; }
 
         // Event triggered on new state
-        event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
+        public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
     }
 }
