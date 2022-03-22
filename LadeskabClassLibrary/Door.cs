@@ -32,7 +32,6 @@ namespace LadeskabClassLibrary
         }
 
 
-
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChangedEventArgs;
 
     }
