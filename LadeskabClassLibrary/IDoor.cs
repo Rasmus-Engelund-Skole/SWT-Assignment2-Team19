@@ -8,7 +8,7 @@ namespace LadeskabClassLibrary
 {
     public class DoorStateChangedEventArgs : EventArgs
     {
-        public bool Open { set; get; }
+        public bool _DoorOpen { set; get; }
     }
 
     public interface IDoor
@@ -17,11 +17,9 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor();
 
-        public void OnDoorStateChanged();
-
-        public void SetDoorState(bool DoorOpen);
+        bool State { set; get; }
 
         // Event triggered on new state
-        event EventHandler<DoorStateChangedEventArgs> DoorStateChangedEventArgs;
+        event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
     }
 }
