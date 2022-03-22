@@ -28,7 +28,7 @@ namespace LadeskabClassLibrary
             _fakeLogfile = Substitute.For<ILogfile>();
             _fakeDisplay = Substitute.For<IDisplay>();
             RFIDReader = new RFIDReader();
-            _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile);
+            _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile, RFIDReader);
         }
 
 

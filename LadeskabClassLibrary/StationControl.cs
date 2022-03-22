@@ -36,8 +36,9 @@ namespace LadeskabClassLibrary
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
+
+            RFIDReader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
             _reader = RFIDReader;
-            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
 
             _oldId = 0;
             _state = LadeskabState.Available;
