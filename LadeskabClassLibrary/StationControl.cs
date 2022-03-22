@@ -26,7 +26,6 @@ namespace LadeskabClassLibrary
         private ILogfile _logfile;
 
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
         public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile)
@@ -52,7 +51,7 @@ namespace LadeskabClassLibrary
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
+                        using (var writer = _logfile.AppText(_logfile.logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         }
