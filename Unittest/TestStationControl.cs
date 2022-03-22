@@ -42,7 +42,6 @@ namespace LadeskabClassLibrary
             _fakeChargeControl.Connected = true;
 
             RFIDReader.SetID(id);
-            _uut.
 
 
             Assert.That(_uut._oldId, Is.EqualTo(result));
