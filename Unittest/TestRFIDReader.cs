@@ -20,6 +20,15 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
+        public void Virgin_idValue()
+        {
+
+            Assert.That(_uut.CurrentID == 0);
+
+        }
+
+
+        [Test]
         public void Setid_positiv_int()
         {
             _uut.SetID(10);
