@@ -82,7 +82,7 @@ namespace LadeskabClassLibrary
                         //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         //}
 
-                        _display.Charging();
+                        _display.Charging(); //Ladeskav optaget
                         _state = LadeskabState.Locked;
                     }
                     else
