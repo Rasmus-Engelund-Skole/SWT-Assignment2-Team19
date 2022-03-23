@@ -20,6 +20,6 @@ namespace LadeskabClassLibrary
         bool IsLocked { set; get; }
 
         // Event triggered on new state
-        public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
+        event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
     }
 }
