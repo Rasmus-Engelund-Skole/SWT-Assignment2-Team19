@@ -9,8 +9,7 @@ namespace LadeskabClassLibrary
 {
     public class Logfile : ILogfile
     {
-        public int LogId { get; set; }
-
+        static public string _filePath = "logfile.txt";
         public string LogFile { get; set; }
 
         public Logfile()
@@ -45,6 +44,27 @@ namespace LadeskabClassLibrary
             logList.Add(stringBuilder.ToString());
 
             LogId++;
+        }
+        public void DoorUnlockedLog(int id)
+        {
+            Log("Skab låst op med RFID: { 0 } ", id);
+
+        }
+        public void DoorLockedLog(int id)
+        {
+            Log("Skab låst med RFID: { 0 } ", id);
+
+        }
+        private void Log(string logEntry, int id)
+        {
+            using (StreamWriter writer = File.AppendText(_filePath))
+            {
+
+                writer.Write("Log indlæg for opladninger: ");
+                writer.WriteLine($" :{logEntry}");
+                writer.WriteLine(DateTime.Now);
+
+            }
         }
     }
 }

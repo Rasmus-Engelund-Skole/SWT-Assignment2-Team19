@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
+
     public interface ILogfile
     {
         public int LogId { get; set; }
@@ -14,5 +15,8 @@ namespace LadeskabClassLibrary
 
         public void LogText(string path, string Log);
 
+        public void DoorUnlockedLog(int id);
+
+        public void DoorLockedLog(int id);
     }
 }

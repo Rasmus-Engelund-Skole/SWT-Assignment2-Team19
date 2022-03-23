@@ -10,48 +10,54 @@ namespace LadeskabClassLibrary
 {
     public class TestLogfile
     {
-
         private Logfile _uut;
-        private string path;
-
         [SetUp]
         public void Setup()
         {
             _uut = new Logfile();
-            path = "log.txt";
-
-        }
-
-
-        [Test]
-        public void StartCounterIsZero()
-        {
-            Assert.That(_uut.LogId, Is.Zero);
         }
 
         [Test]
-        public void CounterIsIncrementedAfterLogEntry()
+        public void LogFile_Locked()
         {
-            long counterValueStorage = _uut.LogId;
-            string logMessage = "Testing Log Message";
+            if (File.Exists(Logfile._filePath))
+            {
+                string currentLog = Insertlog();
+                _uut.DoorLockedLog(1);
+                string newlog = Insertlog();
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
 
-            _uut.LogText(path, logMessage);
+            }
 
-            Assert.That(_uut.LogId, Is.EqualTo(counterValueStorage + 1));
         }
 
         [Test]
-        public void LogFileWritesStringToTarget()
+        public void LogFile_UnLocked()
         {
-            string message = "Testing log writing to test list";
-            List<string> logFileListTest = new List<string>();
+            if (File.Exists(Logfile._filePath))
+            {
+                string currentLog = Insertlog();
+                _uut.DoorUnlockedLog(1);
+                string newlog = Insertlog();
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
 
-            _uut.FakeAddLogEntry(message, logFileListTest);
+            }
 
-            Assert.That(logFileListTest, Is.Not.Empty);
         }
+        private string Insertlog()
+        {
+            string log = "";
 
+            using (StreamReader sr = new StreamReader(Logfile._filePath))
+            {
+                string xline;
+                while ((xline = sr.ReadLine()) != null)
+                {
+                    log = log.Insert(log.Length, xline);
+                }
+            }
+            return log;
 
-
+        }
     }
 }
