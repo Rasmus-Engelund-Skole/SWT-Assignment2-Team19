@@ -11,19 +11,23 @@ namespace LadeskabClassLibrary
     [TestFixture]
     public class TestDisplay
     {
-        private IDisplay _display;
+        private Display _display;
 
         [SetUp]
         public void SetUp()
         {
-            _display = Substitute.For<IDisplay>();
+            _display = new Display();
         }
 
         [Test]
         public void ConnectPhone()
         {
-            _display.ConnectPhone();
-            _display.Received(1).ConnectPhone();
+            //_display.ConnectPhone();
+            //_display.Received(1).ConnectPhone();
+
+            var expectedString = "Tilslut Telefon";
+            string message = _display.ToString();
+            Assume.That(message, Is.EqualTo(expectedString));
         }
 
         [Test]
