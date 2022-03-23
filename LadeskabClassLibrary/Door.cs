@@ -32,7 +32,7 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor()
         {
-            if (!IsLocked)
+            if (IsLocked)
             {
                 IsLocked = false;
             }
