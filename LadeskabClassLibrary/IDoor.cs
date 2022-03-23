@@ -17,7 +17,7 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor();
 
-        bool DoorOpen { set; get; }
+        bool IsLocked { set; get; }
 
         // Event triggered on new state
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;

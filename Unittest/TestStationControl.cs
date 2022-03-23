@@ -33,7 +33,6 @@ namespace LadeskabClassLibrary
 
 
 
-
         [Test]
         public void ConnectedFalse_StateisAvailable()
         {
