@@ -51,12 +51,30 @@ namespace LadeskabClassLibrary
 
 
         [TestCase(1)]
-      
-        public void HandleCurrentChangedEvent_(double newCurrent)
+  
+        public void HandleCurrentChangedEvent_CurrentLessThan5(double newCurrent)
         {
             _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
             _fakeDisplay.DidNotReceive().Charging();
             _fakeDisplay.DidNotReceive().DisconnectPhone();
+        }
+
+        
+        [Test]
+        public void HandleCurrentChangedEvent_Current100()
+        {
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = 100 });
+            _fakeDisplay.Received(1).Charging();
+            _fakeDisplay.DidNotReceive().DisconnectPhone();
+            _fakeDisplay.DidNotReceive().ConnectPhone();
+        }
+
+        [Test]
+        public void HandleCurrentChangedEvent_currentOver500()
+        {
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = 600 });
+            _fakeDisplay.Received(1).DisconnectPhone();
+            _fakeDisplay.DidNotReceive().Charging();
         }
 
         [Test]
