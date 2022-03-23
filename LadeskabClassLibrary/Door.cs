@@ -11,18 +11,18 @@ namespace LadeskabClassLibrary
     {
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
 
-        public bool IsLocked { set; get; }
+        public bool DoorOpen { set; get; }
 
         public Door()
         {
-            IsLocked = true;
+            DoorOpen = true;
         }
 
         public void LockDoor()
         {
-            if (!IsLocked)
+            if (!DoorOpen)
             {
-                IsLocked = true;
+                DoorOpen = true;
             }
             else
             {
@@ -32,9 +32,9 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor()
         {
-            if (IsLocked)
+            if (DoorOpen)
             {
-                IsLocked = false;
+                DoorOpen = false;
             }
             else
             {
@@ -44,7 +44,7 @@ namespace LadeskabClassLibrary
 
         public void SetDoorState(bool DoorState)
         {
-            if (DoorState != IsLocked)
+            if (DoorState != DoorOpen)
             {
                 OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = DoorState });
             }
