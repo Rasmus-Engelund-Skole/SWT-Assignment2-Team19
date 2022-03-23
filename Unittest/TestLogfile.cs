@@ -18,12 +18,14 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
-        public void LogFile_Received_Locked(string logfile,int id)
+        public void LogFile_Locked()
         {
+            if (File.Exists(Logfile._filePath))
+            {
+                
 
-            StreamWriter sw = new StreamWriter(logfile);
-            sw.WriteLine(id);
 
+            }
 
         }
     }

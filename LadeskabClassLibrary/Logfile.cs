@@ -16,17 +16,24 @@ namespace LadeskabClassLibrary
         {
             return File.AppendText(logfile);
         }
-        public void DoorUnlockedLog(RFIDReader id, TimeProvider hour, TimeProvider minute, TimeProvider second)
+        public void DoorUnlockedLog(RFIDReader id)
         {
-            Log(DateTime.Now + ": Skab låst op med RFID: { 0 } ", id);
+            Log("Skab låst op med RFID: { 0 } ", id);
+
+        }
+        public void DoorLockedLog(RFIDReader id)
+        {
+            Log("Skab låst med RFID: { 0 } ", id);
 
         }
         private void Log(string logEntry, RFIDReader id)
         {
             using (StreamWriter writer = File.AppendText(_filePath))
             {
-                writer.Write("LogEntries for Charges: ");
+
+                writer.Write("Log indlæg for opladninger: ");
                 writer.WriteLine($" :{logEntry}");
+                writer.WriteLine(DateTime.Now);
 
             }
         }
