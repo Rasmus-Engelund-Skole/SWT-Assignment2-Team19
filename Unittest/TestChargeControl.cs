@@ -12,16 +12,16 @@ namespace LadeskabClassLibrary
     {
         private ChargeControl _uut;
         private IDisplay _fakeDisplay;
-        private IUsbCharger _fakeUsbCharger;
+        //private IUsbCharger _fakeUsbCharger;
 
 
         [SetUp]
         public void SetUp()
         {
             _fakeDisplay = Substitute.For<IDisplay>();
-            _fakeUsbCharger = Substitute.For<IUsbCharger>();
+            //_fakeUsbCharger = Substitute.For<IUsbCharger>();
 
-            _uut = new ChargeControl(_fakeUsbCharger, _fakeDisplay);
+            //_uut = new ChargeControl(_fakeUsbCharger, _fakeDisplay);
         }
 
         [Test]
