@@ -9,9 +9,29 @@ namespace LadeskabClassLibrary
 {
     public class Display : IDisplay
     {
-        void IDisplay.ShowMessage(string message)
+        public void ConnectPhone()
         {
-            Console.WriteLine(message);
+            Console.WriteLine("Tilslut Telefon");
+        }
+        public void DisconnectPhone()
+        {
+            Console.WriteLine("Fjern Telefon");
+        }
+        public void ConnectError()
+        {
+            Console.WriteLine("Tilslutningsfejl");
+        }
+        public void ReadRFID()
+        {
+            Console.WriteLine("Indlæs RFID"); //Skal implementeres et sted
+        }
+        public void RFIDError()
+        {
+            Console.WriteLine("RFID Fejl");
+        }
+        public void Charging()
+        {
+            Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
         }
 
 
