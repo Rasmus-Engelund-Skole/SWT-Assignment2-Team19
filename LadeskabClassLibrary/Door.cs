@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace LadeskabClassLibrary
 {
-  
+
     public class Door : IDoor
     {
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
 
-        public bool DoorOpen { set; get; }
+        public bool IsLocked { set; get; }
 
         public Door()
         {
-            DoorOpen = true;
+            IsLocked = true;
         }
 
         public void LockDoor()
         {
-            if (!DoorOpen)
+            if (!IsLocked)
             {
+                IsLocked = true;
             }
             else
             {
@@ -31,8 +32,9 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor()
         {
-            if (!DoorOpen)
+            if (!IsLocked)
             {
+                IsLocked = false;
             }
             else
             {
@@ -42,9 +44,9 @@ namespace LadeskabClassLibrary
 
         public void SetDoorState(bool DoorState)
         {
-            if (DoorState != DoorOpen)
+            if (DoorState != IsLocked)
             {
-                OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = true });
+                OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = DoorState });
             }
 
         }
@@ -53,10 +55,5 @@ namespace LadeskabClassLibrary
         {
             DoorStateChanged?.Invoke(this,e);
         }
-
-
-
-        
-
     }
 }
