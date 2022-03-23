@@ -24,6 +24,7 @@ namespace LadeskabClassLibrary
 
         }
 
+      
         [Test]
         public void StopChargeCalled()
         {
@@ -32,6 +33,7 @@ namespace LadeskabClassLibrary
 
             // Assert
             _fakeCharger.Received(1).StopCharge();
+
         }
 
         [Test]
