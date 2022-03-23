@@ -20,6 +20,36 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
+        public void LogFile_Locked_LogAdded()
+        {
+            
+            if (File.Exists(Logfile._filePath))
+            {
+                string currentLog = Insertlog();
+                _uut.DoorLockedLog(1);
+                string newlog = Insertlog();
+
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
+            }
+
+        }
+
+        [Test]
+        public void LogFile_UnLocked_LogAdded()
+        {
+            if (File.Exists(Logfile._filePath))
+            {
+                string currentLog = Insertlog();
+                _uut.DoorUnlockedLog(1);
+                string newlog = Insertlog();
+
+
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
+            }
+
+        }
+
+        [Test]
         public void Logfile_Exist()
         {
             _uut.DoorLockedLog(1);
@@ -28,30 +58,6 @@ namespace LadeskabClassLibrary
 
         }
 
-        [Test]
-        public void LogFile_Locked_LogAdded()
-        {
-                string currentLog = Insertlog();
-                _uut.DoorLockedLog(1);
-                string newlog = Insertlog();
-
-                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
-
-
-        }
-
-        [Test]
-        public void LogFile_UnLocked_LogAdded()
-        {
-                string currentLog = Insertlog();
-                _uut.DoorUnlockedLog(1);
-                string newlog = Insertlog();
-
-
-                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
-
-
-        }
 
         //[Test]
         //public void LogFile_Unlocked_LogQuantity()
@@ -64,21 +70,23 @@ namespace LadeskabClassLibrary
 
 
 
-        
+
         private string Insertlog()
         {
             string log = "";
 
-            using (StreamReader sr = new StreamReader(Logfile._filePath))
+            using (StreamReader sr = File.OpenText(Logfile._filePath))
             {
+                sr.DiscardBufferedData();
                 string xline;
-                while ((xline = sr.ReadToEnd()) != null)
+                while ((xline = sr.ReadLine()) != null)
                 {
                     log = log.Insert(log.Length, xline);
                 }
             }
+               
             return log;
-
+            
         }
     }
 }
