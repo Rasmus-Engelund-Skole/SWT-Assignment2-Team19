@@ -37,6 +37,16 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
+        public void Connected_Truel()
+        {
+            _uut.Connected = true;
+
+            Assert.That(_uut.Connected, Is.True);
+
+        }
+
+
+        [Test]
         [TestCase(true)]
         [TestCase(false)]
         public void IsConnected_Returns(bool connectionSts)
