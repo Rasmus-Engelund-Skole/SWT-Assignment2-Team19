@@ -56,11 +56,10 @@ namespace LadeskabClassLibrary
                 this,
                 new RFIDDetectedEventArgs { ID = 1 });
 
-            string message = string.Empty;
             _fakeDoor.DidNotReceive().LockDoor();
             _fakeChargeControl.DidNotReceive().StartCharge();
             Assert.That(_uut._oldId, Is.EqualTo(0));
-            _fakeLogfile.DidNotReceive().LogText(_fakeLogfile.LogFile, message);
+            _fakeLogfile.DidNotReceive().DoorLockedLog(_uut._oldId);
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
         #endregion
@@ -88,6 +87,7 @@ namespace LadeskabClassLibrary
             _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(this, new RFIDDetectedEventArgs { ID = 1 });
 
             _fakeDoor.Received().LockDoor();
+            _fakeLogfile.Received().DoorLockedLog(_uut._oldId);
             _fakeChargeControl.Received().StartCharge();
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }

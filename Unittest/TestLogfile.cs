@@ -61,3 +61,5 @@ namespace LadeskabClassLibrary
             return log;
 
         }
+    }
+}
