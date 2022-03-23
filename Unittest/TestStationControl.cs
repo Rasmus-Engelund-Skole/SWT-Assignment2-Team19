@@ -141,6 +141,7 @@ namespace LadeskabClassLibrary
 
             _fakeChargeControl.Received(1).StopCharge();
             _fakeDoor.Received().UnlockDoor();
+            _fakeLogfile.Received().DoorUnlockedLog(_uut._oldId);
             _fakeDisplay.Received().DisconnectPhone();
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
@@ -193,6 +194,7 @@ namespace LadeskabClassLibrary
 
             _fakeChargeControl.DidNotReceive().StopCharge();
             _fakeDoor.DidNotReceive().UnlockDoor();
+            _fakeLogfile.DidNotReceive().DoorUnlockedLog(_uut._oldId);
             _fakeDisplay.DidNotReceive().DisconnectPhone();
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
