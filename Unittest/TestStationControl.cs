@@ -82,7 +82,7 @@ namespace LadeskabClassLibrary
         public void StationControl_EventHandling_connectedtrue_RFIDDETECTEDEVENTRaised_functionscalled()
         {
             _fakeChargeControl.Connected = true;
-            _fakeDoor.DoorOpen = false;
+            _fakeDoor.IsLocked = false;
 
 
             _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(this, new RFIDDetectedEventArgs { ID = 1 });
