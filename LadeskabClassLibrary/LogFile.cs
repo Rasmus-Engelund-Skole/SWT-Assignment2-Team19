@@ -26,7 +26,7 @@ namespace LadeskabClassLibrary
             stringBuilder.Append("Message: " + Log + "\n");
             File.AppendAllText(LogFile, stringBuilder.ToString());
             stringBuilder.Clear();
-
+            
             LogId++;
         }
 
@@ -45,8 +45,7 @@ namespace LadeskabClassLibrary
 
             LogId++;
         }
-=======
->>>>>>> 4a7d1ca14822984b2fb8aecfc18950f026b9a710
+
         public void DoorUnlockedLog(int id)
         {
             Log("Skab låst op med RFID: { 0 } ", id);
