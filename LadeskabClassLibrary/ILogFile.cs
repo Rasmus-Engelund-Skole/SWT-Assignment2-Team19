@@ -15,6 +15,6 @@ namespace LadeskabClassLibrary
 
         public void DoorUnlockedLog(int id);
 
-        public void DoorlockedLog(int id);
+        public void DoorLockedLog(int id);
     }
 }

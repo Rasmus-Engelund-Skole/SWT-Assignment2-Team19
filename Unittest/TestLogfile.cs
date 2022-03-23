@@ -22,10 +22,41 @@ namespace LadeskabClassLibrary
         {
             if (File.Exists(Logfile._filePath))
             {
-                
-
+                string currentLog = Insertlog();
+                _uut.DoorLockedLog(1);
+                string newlog = Insertlog();
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
 
             }
+
+        }
+
+        [Test]
+        public void LogFile_UnLocked()
+        {
+            if (File.Exists(Logfile._filePath))
+            {
+                string currentLog = Insertlog();
+                _uut.DoorUnlockedLog(1);
+                string newlog = Insertlog();
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
+
+            }
+
+        }
+        private string Insertlog()
+        {
+            string log = "";
+
+            using (StreamReader sr = new StreamReader(Logfile._filePath))
+            {
+                string xline;
+                while ((xline = sr.ReadLine()) != null)
+                {
+                    log = log.Insert(log.Length, xline);
+                }
+            }
+            return log;
 
         }
     }
