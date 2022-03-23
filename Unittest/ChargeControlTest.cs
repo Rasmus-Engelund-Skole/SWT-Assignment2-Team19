@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using NSubstitute;
+using UsbSimulator;
+
+namespace LadeskabClassLibrary
+{
+    public class ChargeControlTest
+    {
+        private ChargeControl _uut;
+        private IUsbCharger _fakeCharger;
+        private IDisplay _fakeDisplay;
+
+        [SetUp]
+        public void Setup()
+        {
+            _fakeCharger = Substitute.For<IUsbCharger>();
+            _fakeDisplay = Substitute.For<IDisplay>();
+            _uut = new ChargeControl(_fakeCharger, _fakeDisplay);
+
+        }
+
+        [Test]
+        public void StopChargeCalled()
+        {
+            // Act
+            _uut.StopCharge();
+
+            // Assert
+            _fakeCharger.Received(1).StopCharge();
+        }
+
+        [Test]
+        [TestCase(true)]
+        [TestCase(false)]
+        public void IsConnected_Returns(bool connectionSts)
+        {
+            // Assert stub
+            _fakeCharger.Connected.Returns(connectionSts);
+
+            // Act
+            bool result = _uut.IsConnected();
+
+            // Assert
+            Assert.That(result, Is.EqualTo(connectionSts));
+        }
+
+
+        [TestCase(1)]
+      
+        public void HandleCurrentChangedEvent_(double newCurrent)
+        {
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
+            _fakeDisplay.DidNotReceive().Charging();
+            _fakeDisplay.DidNotReceive().DisconnectPhone();
+        }
+
+        [Test]
+        public void StartChargeCalled()
+        {
+            // Act
+            _uut.StartCharge();
+
+            // Assert
+            _fakeCharger.Received(1).StartCharge();
+
+        }
+
+
+    }
+}
