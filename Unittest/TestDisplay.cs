@@ -24,10 +24,6 @@ namespace LadeskabClassLibrary
         {
             //_display.ConnectPhone();
             //_display.Received(1).ConnectPhone();
-
-            var expectedString = "Tilslut Telefon";
-            string message = _display.ToString();
-            Assume.That(message, Is.EqualTo(expectedString));
         }
 
         [Test]
