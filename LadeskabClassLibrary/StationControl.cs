@@ -66,7 +66,7 @@ namespace LadeskabClassLibrary
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        public void RfidDetected(int id)
         {
             switch (_state)
             {
@@ -77,10 +77,10 @@ namespace LadeskabClassLibrary
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = _logfile.AppText(_logfile.LogFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        //using (var writer = _logfile.AppText(_logfile.LogFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
+                        //}
 
                         _display.Charging();
                         _state = LadeskabState.Locked;

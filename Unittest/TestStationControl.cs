@@ -49,7 +49,9 @@ namespace LadeskabClassLibrary
         [Test]
         public void StationControl_connectedfalse_nofunctionscalled()
         {
-            //RFIDReader.SetID(1);
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 1 });
 
 
             _fakeDoor.DidNotReceive().LockDoor();
@@ -65,8 +67,9 @@ namespace LadeskabClassLibrary
         {
             _fakeChargeControl.Connected = true;
             _fakeDoor.DoorOpen = false;
-            
-            //RFIDReader.SetID(1);
+
+
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(this, new RFIDDetectedEventArgs { ID = 1 });
 
             _fakeDoor.Received().LockDoor();
             _fakeChargeControl.Received().StartCharge();
@@ -81,7 +84,9 @@ namespace LadeskabClassLibrary
         public void StationControl_RecievesIDfromRFID(int id)
         {
             _fakeChargeControl.Connected = true;
-            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith(new RFIDDetectedEventArgs { ID = id });
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = id });
 
 
             Assert.That(_uut._oldId, Is.EqualTo(id));
