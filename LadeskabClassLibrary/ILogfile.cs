@@ -9,12 +9,7 @@ namespace LadeskabClassLibrary
 
     public interface ILogfile
     {
-        public int LogId { get; set; }
-
-        public string LogFile { get; set; }
-
-        public void LogText(string path, string Log);
-
+        static public string _filePath;
         public void DoorUnlockedLog(int id);
 
         public void DoorLockedLog(int id);

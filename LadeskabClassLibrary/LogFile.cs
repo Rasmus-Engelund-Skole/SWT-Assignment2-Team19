@@ -10,8 +10,8 @@ namespace LadeskabClassLibrary
     public class Logfile : ILogfile
     {
         static public string _filePath = "logfile.txt";
-        public string LogFile { get; set; }
 
+<<<<<<< HEAD
         public Logfile()
         {
             LogId = 0;  
@@ -45,6 +45,8 @@ namespace LadeskabClassLibrary
 
             LogId++;
         }
+=======
+>>>>>>> 4a7d1ca14822984b2fb8aecfc18950f026b9a710
         public void DoorUnlockedLog(int id)
         {
             Log("Skab låst op med RFID: { 0 } ", id);
