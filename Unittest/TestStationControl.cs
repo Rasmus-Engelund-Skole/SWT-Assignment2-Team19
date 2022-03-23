@@ -151,7 +151,7 @@ namespace LadeskabClassLibrary
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        [TestCase(int.MaxValue,int.MaxValue)]
+        [TestCase(int.MaxValue)]
         public void StationControl_RFIDDETECTEDEVENTRaised_OldId_isequal_toNewId_CaseLocked(int id)
         {
             _fakeChargeControl.Connected = true;
