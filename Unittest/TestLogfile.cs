@@ -8,7 +8,21 @@ using NUnit.Framework;
 
 namespace LadeskabClassLibrary
 {
-    internal class TestLogfile
+    public class TestLogfile
     {
+
+        private Logfile _uut;
+
+        [SetUp]
+        public void Setup()
+        {
+            _uut = new Logfile();
+        }
+
+        [Test]
+        public void Test_Logfile()
+        {
+
+        }
     }
 }
