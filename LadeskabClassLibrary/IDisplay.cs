@@ -8,6 +8,11 @@ namespace LadeskabClassLibrary
 {
     public interface IDisplay
     {
-        void ShowMessage(string message);
+        void ConnectPhone();
+        void DisconnectPhone();
+        void ConnectError();
+        void ReadRFID();
+        void RFIDError();
+        void Charging();
     }
 }

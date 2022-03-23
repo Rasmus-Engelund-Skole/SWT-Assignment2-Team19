@@ -15,7 +15,7 @@ namespace LadeskabClassLibrary
         private ITimeProvider _fakeTimeProvider;
         private IDoor _fakeDoor;
         public IChargeControl _fakeChargeControl;
-        private RFIDReader RFIDReader;
+        private IRFIDReader _fakeRFIDReader;
         private ILogfile _fakeLogfile;
         private IDisplay _fakeDisplay;
 
@@ -27,8 +27,9 @@ namespace LadeskabClassLibrary
             _fakeChargeControl = Substitute.For<IChargeControl>();
             _fakeLogfile = Substitute.For<ILogfile>();
             _fakeDisplay = Substitute.For<IDisplay>();
-            RFIDReader = new RFIDReader();
-            _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile, RFIDReader);
+            _fakeRFIDReader = Substitute.For<IRFIDReader>();
+            _uut= new StationControl(_fakeDoor, _fakeChargeControl,_fakeDisplay, _fakeLogfile, _fakeRFIDReader);
+
         }
 
 
@@ -47,30 +48,47 @@ namespace LadeskabClassLibrary
         [Test]
         public void StationControl_connectedfalse_nofunctionscalled()
         {
-            RFIDReader.SetID(1);
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 1 });
 
 
             _fakeDoor.DidNotReceive().LockDoor();
             _fakeChargeControl.DidNotReceive().StartCharge();
             Assert.That(_uut._oldId, Is.EqualTo(0));
-            _fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
+            //_fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
 
 
         [Test]
-        [TestCase(1,1)]
-        [TestCase(2,2)]
-        [TestCase(3,3)]
-        [TestCase(int.MaxValue,int.MaxValue)]
-        public void StationControl_RecievesIDfromRFID(int id, int result)
+        public void StationControl_connectedtrue_functionscalled()
         {
             _fakeChargeControl.Connected = true;
+            _fakeDoor.DoorOpen = false;
 
-            RFIDReader.SetID(id);
+
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(this, new RFIDDetectedEventArgs { ID = 1 });
+
+            _fakeDoor.Received().LockDoor();
+            _fakeChargeControl.Received().StartCharge();
+        }
 
 
-            Assert.That(_uut._oldId, Is.EqualTo(result));
+        [Test]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(int.MaxValue)]
+        public void StationControl_RecievesIDfromRFID(int id)
+        {
+            _fakeChargeControl.Connected = true;
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = id });
+
+
+            Assert.That(_uut._oldId, Is.EqualTo(id));
         }
 
 

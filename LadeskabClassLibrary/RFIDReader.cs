@@ -37,7 +37,7 @@ namespace LadeskabClassLibrary
 
 
 
-        private void OnRFIDDetected(RFIDDetectedEventArgs e)
+        protected virtual void OnRFIDDetected(RFIDDetectedEventArgs e)
         {
             RFIDDetectedEvent?.Invoke(this, e);
         }

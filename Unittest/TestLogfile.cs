@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NSubstitute;
+using NUnit.Framework;
 
 namespace LadeskabClassLibrary
 {
-    public interface IChargeControl
+    internal class TestLogfile
     {
-        bool Connected { get; set; }
-
-        public void StartCharge();
-
-        public void StopCharge();
-
-       
-
     }
 }

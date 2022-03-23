@@ -31,15 +31,19 @@ namespace LadeskabClassLibrary
 
 
         // Her mangler constructor
-        public StationControl(IDoor Door, IChargeControl Charger, IDisplay Display, ILogfile Logfile, IRFIDReader RFIDReader)
+        public StationControl(IDoor Door,
+                              IChargeControl Charger,
+                              IDisplay Display,
+                              ILogfile Logfile,
+                              IRFIDReader RFIDReader)
         {
             _door = Door;
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
             _door.DoorStateChanged += HandleDoorStateChangedEvent;
-            RFIDReader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
             _reader = RFIDReader;
+            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
 
             _oldId = 0;
             _state = LadeskabState.Available;
@@ -52,7 +56,8 @@ namespace LadeskabClassLibrary
 
         private void HandleRFIDDetectedEvent(object sender, RFIDDetectedEventArgs e)
         {
-            RfidDetected(e.ID);
+            int id = e.ID;
+            RfidDetected(id);
         }
 
         private void HandleDoorStateChangedEvent(object sender, DoorStateChangedEventArgs e)
@@ -61,7 +66,7 @@ namespace LadeskabClassLibrary
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        public void RfidDetected(int id)
         {
             switch (_state)
             {
@@ -72,17 +77,17 @@ namespace LadeskabClassLibrary
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = _logfile.AppText(_logfile.LogFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        //using (var writer = _logfile.AppText(_logfile.LogFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
+                        //}
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.Charging();
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.ConnectError();
                     }
 
                     break;
@@ -102,12 +107,12 @@ namespace LadeskabClassLibrary
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
                         }
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _display.DisconnectPhone();
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.RFIDError();
                     }
 
                     break;
