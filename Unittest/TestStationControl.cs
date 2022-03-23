@@ -56,11 +56,11 @@ namespace LadeskabClassLibrary
                 this,
                 new RFIDDetectedEventArgs { ID = 1 });
 
-
+            string message = string.Empty;
             _fakeDoor.DidNotReceive().LockDoor();
             _fakeChargeControl.DidNotReceive().StartCharge();
             Assert.That(_uut._oldId, Is.EqualTo(0));
-            _fakeLogfile.DidNotReceive().AppText(_fakeLogfile.LogFile);
+            _fakeLogfile.DidNotReceive().LogText(_fakeLogfile.LogFile, message);
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
         #endregion
