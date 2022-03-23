@@ -39,6 +39,7 @@ namespace LadeskabClassLibrary
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
+            //act
             _uut.DisconnectPhone();
 
             //assert
@@ -53,6 +54,7 @@ namespace LadeskabClassLibrary
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
+            //act
             _uut.ConnectError();
 
             //assert
@@ -66,6 +68,7 @@ namespace LadeskabClassLibrary
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
+            //act
             _uut.ReadRFID();
 
             //assert
@@ -79,6 +82,7 @@ namespace LadeskabClassLibrary
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
+            //act
             _uut.RFIDError();
 
             //assert
@@ -92,6 +96,7 @@ namespace LadeskabClassLibrary
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
+            //act
             _uut.Charging();
 
             var output = stringWriter.ToString();
