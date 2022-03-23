@@ -19,7 +19,7 @@ namespace LadeskabClassLibrary
         {
             _receivedEventArgs = null;
             _uut = new Door();
-            _uut.IsLocked = false;
+            _uut.DoorOpen = false;
             
             //Event listener to check the event occurence and event data
             _uut.DoorStateChanged +=
@@ -32,7 +32,7 @@ namespace LadeskabClassLibrary
         [Test]
         public void OnDoorOpen_EventFired() //tester om vi har modtaget eventet i vores door subjekt
         {
-            _uut.IsLocked = true;
+            _uut.DoorOpen = true;
             _uut.SetDoorState(false);
             Assert.That(_receivedEventArgs, Is.Not.Null);
         }
@@ -49,7 +49,7 @@ namespace LadeskabClassLibrary
         [Test]
         public void DoorClose_CorrectValueReceived() //tester at DoorClose er false
         {
-            _uut.IsLocked = true;
+            _uut.DoorOpen = true;
             _uut.SetDoorState(false);
             Assert.That(_receivedEventArgs._DoorOpen, Is.EqualTo(false));
         }
@@ -59,14 +59,48 @@ namespace LadeskabClassLibrary
         {
             _uut.LockDoor();
 
-            Assert.That(_uut.IsLocked, Is.EqualTo(true));
+            Assert.That(_uut.DoorOpen, Is.EqualTo(true));
         }
 
         [Test]
         public void UnLockDoor_CorrectValueReceived() //tester at isLock er false
         {
+            _uut.DoorOpen = true;
             _uut.UnlockDoor();
-            Assert.That(_uut.IsLocked, Is.EqualTo(false));
+            Assert.That(_uut.DoorOpen, Is.EqualTo(false));
         }
+
+
+        [Test]
+        public void LockDoor_exception() //tester at isLock er false
+        {
+            _uut.DoorOpen = true;
+            
+            try
+            {
+                _uut.LockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
+        }
+
+
+        [Test]
+        public void UnLockDoor_exception() //tester at isLock er false
+        {
+            _uut.DoorOpen = false;
+
+            try
+            {
+                _uut.UnlockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
+        }
+
     }
 }

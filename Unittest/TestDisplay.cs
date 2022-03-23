@@ -11,54 +11,92 @@ namespace LadeskabClassLibrary
     [TestFixture]
     public class TestDisplay
     {
-        private IDisplay _display;
+        private Display _uut;
 
         [SetUp]
         public void SetUp()
         {
-            _display = Substitute.For<IDisplay>();
+            _uut = new Display();
         }
 
         [Test]
         public void ConnectPhone()
         {
-            _display.ConnectPhone();
-            _display.Received(1).ConnectPhone();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            //act
+            _uut.ConnectPhone();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Tilslut Telefon\r\n"));
         }
 
         [Test]
         public void DisconnectPhone()
         {
-            _display.DisconnectPhone();
-            _display.Received(1).DisconnectPhone();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            _uut.DisconnectPhone();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Fjern Telefon\r\n"));
+
         }
 
         [Test]
         public void ConnectError()
         {
-            _display.ConnectError();
-            _display.Received(1).ConnectError();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            _uut.ConnectError();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Tilslutningsfejl\r\n"));
         }
 
         [Test]
         public void ReadRFID()
         {
-            _display.ReadRFID();
-            _display.Received(1).ReadRFID();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            _uut.ReadRFID();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Indlæs RFID\r\n"));
         }
 
         [Test]
         public void RFIDError()
         {
-            _display.RFIDError();
-            _display.Received(1).RFIDError();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            _uut.RFIDError();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("RFID Fejl\r\n"));
         }
         
         [Test]
         public void Charging()
         {
-            _display.Charging();
-            _display.Received(1).Charging();
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            _uut.Charging();
+
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.\r\n"));
+
         }
     }
 }
