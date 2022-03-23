@@ -11,6 +11,8 @@ namespace LadeskabClassLibrary
     public class TestLogfile
     {
         private Logfile _uut;
+
+
         [SetUp]
         public void Setup()
         {
@@ -51,7 +53,7 @@ namespace LadeskabClassLibrary
             using (StreamReader sr = new StreamReader(Logfile._filePath))
             {
                 string xline;
-                while ((xline = sr.ReadLine()) != null)
+                while ((xline = sr.ReadToEnd()) != null)
                 {
                     log = log.Insert(log.Length, xline);
                 }
