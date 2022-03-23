@@ -11,6 +11,7 @@ namespace LadeskabClassLibrary
     {
         static public string _filePath = "logfile.txt";
 
+
         public void DoorUnlockedLog(int id)
         {
             Log("Skab låst op med RFID: { 0 } ", id);
