@@ -11,6 +11,6 @@ namespace LadeskabClassLibrary
         public string LogFile { get; set; }
 
         public StreamWriter AppText(string logfile);
-
+    
     }
 }

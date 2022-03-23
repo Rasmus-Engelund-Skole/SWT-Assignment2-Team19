@@ -15,5 +15,10 @@ namespace LadeskabClassLibrary
         {
             return File.AppendText(logfile);
         }
+        public void CreateLog()
+        {
+            
+
+        }
     }
 }
