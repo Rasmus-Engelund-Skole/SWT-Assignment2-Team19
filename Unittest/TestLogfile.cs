@@ -20,32 +20,51 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
-        public void LogFile_Locked()
+        public void Logfile_Exist()
         {
-            if (File.Exists(Logfile._filePath))
-            {
-                string currentLog = Insertlog();
-                _uut.DoorLockedLog(1);
-                string newlog = Insertlog();
-                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
+            _uut.DoorLockedLog(1);
 
-            }
+            Assert.IsTrue(File.Exists(Logfile._filePath));
 
         }
 
         [Test]
-        public void LogFile_UnLocked()
+        public void LogFile_Locked_LogAdded()
         {
-            if (File.Exists(Logfile._filePath))
-            {
+                string currentLog = Insertlog();
+                _uut.DoorLockedLog(1);
+                string newlog = Insertlog();
+
+                Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
+
+
+        }
+
+        [Test]
+        public void LogFile_UnLocked_LogAdded()
+        {
                 string currentLog = Insertlog();
                 _uut.DoorUnlockedLog(1);
                 string newlog = Insertlog();
+
+
                 Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
 
-            }
 
         }
+
+        //[Test]
+        //public void LogFile_Unlocked_LogQuantity()
+        //{
+        //    if(!File.Exists(Logfile._filePath))
+        //    {
+        //        int; 
+
+        //    }
+
+
+
+        
         private string Insertlog()
         {
             string log = "";
