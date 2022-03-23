@@ -65,6 +65,7 @@ namespace LadeskabClassLibrary
         [Test]
         public void UnLockDoor_CorrectValueReceived() //tester at isLock er false
         {
+            _uut.IsLocked = true;
             _uut.UnlockDoor();
             Assert.That(_uut.IsLocked, Is.EqualTo(false));
         }
