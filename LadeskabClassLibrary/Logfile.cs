@@ -26,7 +26,6 @@ namespace LadeskabClassLibrary
         {
             using (StreamWriter writer = File.AppendText(_filePath))
             {
-
                 writer.Write("Log indlæg for opladninger: ");
                 writer.WriteLine($" :{logEntry}");
                 writer.WriteLine(DateTime.Now);
