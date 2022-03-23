@@ -151,7 +151,7 @@ namespace LadeskabClassLibrary
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        [TestCase(int.MaxValue,int.MaxValue)]
+        [TestCase(int.MaxValue)]
         public void StationControl_RFIDDETECTEDEVENTRaised_OldId_isequal_toNewId_CaseLocked(int id)
         {
             _fakeChargeControl.Connected = true;
@@ -174,6 +174,49 @@ namespace LadeskabClassLibrary
 
         #endregion
 
+        #region TEst of if statement Evaluation to false
+        [Test]
+        public void StationControl_RFIDDETECTEDEVENTRaised_functionsnotcalled_CaseLocked()
+        {
+            _fakeChargeControl.Connected = true;
+            _fakeDoor.DoorOpen = false;
+
+            // Lock The phone in the Unit, set _state to locked
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 1 });
+            // Try to remove the phone from the locked uut, 
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 2 });
+
+
+            _fakeChargeControl.DidNotReceive().StopCharge();
+            _fakeDoor.DidNotReceive().UnlockDoor();
+            _fakeDisplay.DidNotReceive().DisconnectPhone();
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
+        }
+
+        [Test]
+        public void StationControl_RFIDDETECTEDEVENTRaised_Displayerrorcalled_CaseLocked()
+        {
+            _fakeChargeControl.Connected = true;
+            _fakeDoor.DoorOpen = false;
+
+            // Lock The phone in the Unit, set _state to locked
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 1 });
+            // Try to remove the phone from the locked uut, 
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+                this,
+                new RFIDDetectedEventArgs { ID = 2 });
+
+
+            _fakeDisplay.Received().RFIDError();
+        }
+
+        #endregion
 
 
         #endregion

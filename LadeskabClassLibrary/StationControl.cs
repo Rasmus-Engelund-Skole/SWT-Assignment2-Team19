@@ -102,10 +102,10 @@ namespace LadeskabClassLibrary
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        using (var writer = _logfile.AppText(_logfile.LogFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        //using (var writer = _logfile.AppText(_logfile.LogFile))
+                        //{
+                        //    writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
+                        //}
 
                         _display.DisconnectPhone();
                         _state = LadeskabState.Available;
