@@ -11,7 +11,7 @@ namespace LadeskabClassLibrary
     {
         public void ConnectPhone()
         {
-            Console.WriteLine("Tilslut Telefon");
+            Console.WriteLine("Tilslut Telefon"); //Skal implementeres et sted
         }
         public void DisconnectPhone()
         {
