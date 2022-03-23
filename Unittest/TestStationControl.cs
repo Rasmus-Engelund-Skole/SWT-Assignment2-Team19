@@ -127,7 +127,7 @@ namespace LadeskabClassLibrary
         public void StationControl_RFIDDETECTEDEVENTRaised_functionscalled_CaseLocked()
         {
             _fakeChargeControl.Connected = true;
-            _fakeDoor.IsLocked = false;
+            _fakeDoor.DoorOpen = false;
 
             // Lock The phone in the Unit, set _state to locked
             _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
@@ -155,7 +155,7 @@ namespace LadeskabClassLibrary
         public void StationControl_RFIDDETECTEDEVENTRaised_OldId_isequal_toNewId_CaseLocked(int id)
         {
             _fakeChargeControl.Connected = true;
-            _fakeDoor.IsLocked = false;
+            _fakeDoor.DoorOpen = false;
 
             // Lock The phone in the Unit, set _state to locked
             _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
