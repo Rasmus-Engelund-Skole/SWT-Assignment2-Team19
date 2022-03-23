@@ -14,7 +14,7 @@ namespace LadeskabClassLibrary
 
         public void StopCharge();
 
-       
+        public bool IsConnected();
 
 
     }

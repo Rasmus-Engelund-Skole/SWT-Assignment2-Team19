@@ -12,9 +12,10 @@ namespace LadeskabClassLibrary
         public bool Connected { get; set; }
         private IUsbCharger Charger { get; set; }
         private IDisplay Display { get; set; }
-        private string lastMessage { get; set; }
+        
 
         public double Current;
+
         public ChargeControl(IUsbCharger charger, IDisplay display)
         {
             Charger = charger;
@@ -32,6 +33,11 @@ namespace LadeskabClassLibrary
             Charger.StopCharge();
         }
 
+        public bool IsConnected()
+        {
+            return Charger.Connected;
+        }
+
         private void DiplayChargeMessage()
         {
             
@@ -46,6 +52,7 @@ namespace LadeskabClassLibrary
             else if (Current > 500)
             {
                 Display.DisconnectPhone();
+                StopCharge();  
             }
             
         }
