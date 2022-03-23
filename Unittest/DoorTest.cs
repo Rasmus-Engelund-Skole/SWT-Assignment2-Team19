@@ -68,5 +68,38 @@ namespace LadeskabClassLibrary
             _uut.UnlockDoor();
             Assert.That(_uut.IsLocked, Is.EqualTo(false));
         }
+
+
+        [Test]
+        public void LockDoor_exception() //tester at isLock er false
+        {
+            _uut.IsLocked = true;
+            
+            try
+            {
+                _uut.LockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
+        }
+
+
+        [Test]
+        public void UnLockDoor_exception() //tester at isLock er false
+        {
+            _uut.IsLocked = false;
+
+            try
+            {
+                _uut.UnlockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
+        }
+
     }
 }
