@@ -228,10 +228,94 @@ namespace LadeskabClassLibrary
         [Test]
         public void StationControl_RFIDDETECTEDEVENTRaised_Nothinghappens_CaseDoorOpen()
         {
-            ;
+            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+            this,
+            new DoorStateChangedEventArgs { _DoorOpen = true });
+            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
+            this,
+            new RFIDDetectedEventArgs { ID = 1 });
 
+
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
 
         }
+
+
+        #endregion
+
+        #region Test of DoorStateChangedFunc Switch
+
+        #region DoorstatechangedEvent Called _state changed
+
+        [Test]
+        public void StationControl_RaisesEvent_ExceptionThrownDuetoInvalidcall_OnStateAvailable()
+        {
+            try
+            {
+                //Raise Event in fake
+                _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                    this,
+                    new DoorStateChangedEventArgs { _DoorOpen = false });
+            }
+
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is InvalidOperationException);
+            }
+
+        }
+
+
+        [Test]
+        public void StationControl_RecievesTrueFromDoorevent()
+        {
+            //Raise Event in fake
+            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                this,
+                new DoorStateChangedEventArgs { _DoorOpen = true });
+            // This asserts that uut has connected to the event
+            // And handles value correctly
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
+        }
+
+        [Test]
+        public void StationControl_RaisesEvent_ExceptionThrownDuetoInvalidcall_OnStateDoorOpen()
+        {
+            try
+            {
+                //Raise Event in fake
+                _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                    this,
+                    new DoorStateChangedEventArgs { _DoorOpen = true });
+                _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                    this,
+                    new DoorStateChangedEventArgs { _DoorOpen = true });
+            }
+
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is InvalidOperationException);
+            }
+
+        }
+
+        [Test]
+        public void StationControl_RecievesTrueThenFalseFromDoorevent()
+        {
+            //Raise Event in fake
+            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                this,
+                new DoorStateChangedEventArgs { _DoorOpen = true });
+
+            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
+                this,
+                new DoorStateChangedEventArgs { _DoorOpen = false });
+            // This asserts that uut has connected to the event
+            // And handles value correctly
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
+        }
+
+        #endregion
 
 
         #endregion

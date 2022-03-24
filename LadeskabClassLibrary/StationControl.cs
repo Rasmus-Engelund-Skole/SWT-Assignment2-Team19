@@ -41,10 +41,11 @@ namespace LadeskabClassLibrary
             _charger = Charger;
             _display = Display;
             _logfile = Logfile;
-            _door.DoorStateChanged += HandleDoorStateChangedEvent;
             _reader = RFIDReader;
-            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
 
+
+            _door.DoorStateChanged += HandleDoorStateChangedEvent;
+            _reader.RFIDDetectedEvent += HandleRFIDDetectedEvent;
             _oldId = 0;
             _state = LadeskabState.Available;
             _charger.Connected = false;
@@ -62,7 +63,8 @@ namespace LadeskabClassLibrary
 
         private void HandleDoorStateChangedEvent(object sender, DoorStateChangedEventArgs e)
         {
-            DoorStateChangedFunc(e._DoorOpen);
+            bool Dooropen = e._DoorOpen;
+            DoorStateChangedFunc(Dooropen);
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -116,7 +118,28 @@ namespace LadeskabClassLibrary
         // Her mangler de andre trigger handlere
         private void DoorStateChangedFunc(bool DoorOpen)
         {
+            switch (DoorOpen)
+            {
+                case true:
+                    if (_state == LadeskabState.Available)
+                        _state = LadeskabState.DoorOpen;
+                    else
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    break;
 
+                case false:
+                    if (_state == LadeskabState.DoorOpen)
+                        _state = LadeskabState.Available;
+                    else
+                        throw new InvalidOperationException();
+
+                    break;
+
+            }
+
+                
 
 
         }

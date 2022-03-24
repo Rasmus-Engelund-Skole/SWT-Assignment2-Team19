@@ -25,6 +25,14 @@ namespace LadeskabClassLibrary
 
         }
 
+        [Test]
+        public void IsConnectedIsTrue()
+        {
+            _uut.Connected = true;
+
+            Assert.That(_uut.Connected, Is.True);
+
+        }
       
         [Test]
         public void StopChargeCalled()
