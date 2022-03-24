@@ -16,7 +16,7 @@ namespace LadeskabClassLibrary
         public void Setup()
         {
             _uut = new RFIDReader();
-           /* _detectedEventArgs = null;
+            _detectedEventArgs = null;
 
             //Event listener to check the event occurence and event data
             _uut.RFIDDetectedEvent +=
@@ -24,16 +24,16 @@ namespace LadeskabClassLibrary
                 {
                     _detectedEventArgs = args;
                 };
-           */
+           
         }
-        /*
+        
         [Test]
         public void Setid_EventFired() //tester om vi har modtaget eventet i vores rfid subjekt
         {
             _uut.SetID(10);
             Assert.That(_detectedEventArgs, Is.Not.Null);
         }
-        */
+        
         [Test]
         public void Virgin_idValue()
         {
