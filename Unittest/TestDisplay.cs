@@ -157,5 +157,19 @@ namespace LadeskabClassLibrary
             Assert.That(output, Is.EqualTo("Telefonen er frakoblet\r\n"));
 
         }
+        [Test]
+        public void DoneCharging()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            //act
+            _uut.DoneCharging();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Skabet er låst og din telefon er færdig med at lade op. Brug dit RFID tag til at låse skabet op.\r\n"));
+
+        }
     }
 }
