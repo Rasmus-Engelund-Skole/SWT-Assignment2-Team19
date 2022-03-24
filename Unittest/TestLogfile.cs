@@ -17,35 +17,37 @@ namespace LadeskabClassLibrary
         public void Setup()
         {
             _uut = new Logfile();
+            using (StreamReader sr = File.OpenText(Logfile._filePath))
+            {
+                sr.Dispose();
+            }
         }
 
         [Test]
         public void LogFile_Locked_LogAdded()
         {
-            
-            if (File.Exists(Logfile._filePath))
-            {
                 string currentLog = Insertlog();
                 _uut.DoorLockedLog(1);
                 string newlog = Insertlog();
 
                 Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
-            }
+
 
         }
 
         [Test]
         public void LogFile_UnLocked_LogAdded()
         {
-            if (File.Exists(Logfile._filePath))
-            {
+
                 string currentLog = Insertlog();
                 _uut.DoorUnlockedLog(1);
                 string newlog = Insertlog();
+                string filename = @"logfile.txt";
+                FileInfo f = new FileInfo(filename);
 
 
                 Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
-            }
+
 
         }
 
@@ -58,31 +60,15 @@ namespace LadeskabClassLibrary
 
         }
 
-
-        //[Test]
-        //public void LogFile_Unlocked_LogQuantity()
-        //{
-        //    if(!File.Exists(Logfile._filePath))
-        //    {
-        //        int; 
-
-        //    }
-
-
-
-
         private string Insertlog()
-        {
+        { 
             string log = "";
-
             using (StreamReader sr = File.OpenText(Logfile._filePath))
             {
-                sr.DiscardBufferedData();
                 string xline;
-                while ((xline = sr.ReadLine()) != null)
-                {
-                    log = log.Insert(log.Length, xline);
-                }
+                xline = sr.ReadToEnd();
+                log = log.Insert(log.Length, xline);
+
             }
                
             return log;

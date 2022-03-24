@@ -9,28 +9,35 @@ namespace LadeskabClassLibrary
 {
     public class Logfile : ILogfile
     {
+
         static public string _filePath = "logfile.txt";
+
 
 
         public void DoorUnlockedLog(int id)
         {
-            Log("Skab låst op med RFID: { 0 } ", id);
+            if (id != 0)
+            {
+                using (StreamWriter writer = File.AppendText(_filePath))
+                {
+                    writer.WriteLine(DateTime.Now);
+                    writer.WriteLine($"Skab låst op med RFID: {id}", id);
 
+                }
+            }
         }
         public void DoorLockedLog(int id)
         {
-            Log("Skab låst med RFID: { 0 } ", id);
-
-        }
-        private void Log(string logEntry, int id)
-        {
-            using (StreamWriter writer = File.AppendText(_filePath))
+            if (id != 0)
             {
-                writer.Write("Log indlæg for opladninger: ");
-                writer.WriteLine($" :{logEntry}");
-                writer.WriteLine(DateTime.Now);
+                using (StreamWriter writer = File.AppendText(_filePath))
+                {
+                    writer.WriteLine(DateTime.Now);
+                    writer.WriteLine($"Skab låst med RFID: {id}",id);
 
+                }
             }
         }
+
     }
 }
