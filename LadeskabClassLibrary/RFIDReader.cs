@@ -34,7 +34,7 @@ namespace LadeskabClassLibrary
                     throw new ArgumentOutOfRangeException();
                 }
             }
-            catch (ArgumentOutOfRangeException) //Throw exception og går tilbage til main
+            catch (ArgumentOutOfRangeException)
             {
                 Console.WriteLine("Ugyldigt RFID prøv igen");
             }
