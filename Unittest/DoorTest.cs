@@ -59,15 +59,14 @@ namespace LadeskabClassLibrary
         {
             _uut.LockDoor();
 
-            Assert.That(_uut.DoorOpen, Is.EqualTo(true));
+           _uut.Received().LockDoor();
         }
 
         [Test]
         public void UnLockDoor_CorrectValueReceived() //tester at isLock er false
         {
-            _uut.DoorOpen = true;
             _uut.UnlockDoor();
-            Assert.That(_uut.DoorOpen, Is.EqualTo(false));
+            _uut.Received().UnlockDoor();
         }
 
 
