@@ -12,25 +12,28 @@ namespace LadeskabClassLibrary
     public class TestRFIDReader
     {
         private RFIDReader _uut;
-        private RFIDDetectedEventArgs _receivedEventArgs;
+        private RFIDDetectedEventArgs _detectedEventArgs;
         public void Setup()
         {
             _uut = new RFIDReader();
-            _receivedEventArgs = null;
+           /* _detectedEventArgs = null;
 
             //Event listener to check the event occurence and event data
             _uut.RFIDDetectedEvent +=
                 (o, args) =>
                 {
-                    _receivedEventArgs = args;
+                    _detectedEventArgs = args;
                 };
+           */
         }
-
+        /*
         [Test]
-        public void SetID_EventFired() //tester om vi har modtaget eventet i vores door subjekt
+        public void Setid_EventFired() //tester om vi har modtaget eventet i vores rfid subjekt
         {
+            _uut.SetID(10);
+            Assert.That(_detectedEventArgs, Is.Not.Null);
         }
-
+        */
         [Test]
         public void Virgin_idValue()
         {
