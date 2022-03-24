@@ -11,7 +11,7 @@ namespace LadeskabClassLibrary
     {
         public void ConnectPhone()
         {
-            Console.WriteLine("Tilslut Telefon"); //Skal implementeres et sted
+            Console.WriteLine("Tilslut Telefon");
         }
         public void DisconnectPhone()
         {
@@ -23,7 +23,7 @@ namespace LadeskabClassLibrary
         }
         public void ReadRFID()
         {
-            Console.WriteLine("Indlæs RFID"); //Skal implementeres et sted
+            Console.WriteLine("Indlæs RFID"); //Should be used with DoorClosed()
         }
         public void RFIDError()
         {
