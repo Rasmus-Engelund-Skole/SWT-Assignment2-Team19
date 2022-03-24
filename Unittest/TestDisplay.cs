@@ -73,7 +73,7 @@ namespace LadeskabClassLibrary
 
             //assert
             var output = stringWriter.ToString();
-            Assert.That(output, Is.EqualTo("Indlæs RFID\r\n"));
+            Assert.That(output, Is.EqualTo("Døren er lukket, Indlæs RFID\r\n"));
         }
 
         [Test]
