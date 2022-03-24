@@ -53,7 +53,6 @@ namespace LadeskabClassLibrary
 
 
         [TestCase(1)]
-  
         public void HandleCurrentChangedEvent_CurrentLessThan5(double newCurrent)
         {
             _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
@@ -79,7 +78,6 @@ namespace LadeskabClassLibrary
             _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = 600 });
             _fakeDisplay.Received(1).DisconnectPhone();
             _fakeDisplay.DidNotReceive().Charging();
-
         }
 
         [Test]
