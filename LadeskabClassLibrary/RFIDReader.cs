@@ -9,7 +9,7 @@ namespace LadeskabClassLibrary
     public class RFIDReader: IRFIDReader
     {
 
-        public int CurrentID { get; private set; }
+        public int CurrentID { get; set; }
         // Event triggered on new ID value
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
 
