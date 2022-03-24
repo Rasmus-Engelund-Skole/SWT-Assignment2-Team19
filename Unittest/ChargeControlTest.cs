@@ -15,6 +15,7 @@ namespace LadeskabClassLibrary
         private IUsbCharger _fakeCharger;
         private IDisplay _fakeDisplay;
 
+
         [SetUp]
         public void Setup()
         {
