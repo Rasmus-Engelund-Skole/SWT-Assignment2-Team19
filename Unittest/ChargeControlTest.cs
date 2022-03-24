@@ -31,6 +31,7 @@ namespace LadeskabClassLibrary
             _uut.Connected = true;
 
             Assert.That(_uut.Connected, Is.True);
+
         }
       
         [Test]
