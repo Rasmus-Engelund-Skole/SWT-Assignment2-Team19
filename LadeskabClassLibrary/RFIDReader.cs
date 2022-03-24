@@ -24,11 +24,8 @@ namespace LadeskabClassLibrary
         {
             if (newID > 0)
             {
-                if (newID != CurrentID)
-                {
-                    OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
-                    CurrentID = newID;
-                }
+                OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
+                CurrentID = newID;
             }
             else
             {

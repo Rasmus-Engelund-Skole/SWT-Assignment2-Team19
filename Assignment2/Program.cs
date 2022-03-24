@@ -13,7 +13,7 @@ bool finish = false;
 do
 {
     string input;
-    System.Console.WriteLine("Indtast E, O, C, R: ");
+    System.Console.WriteLine("Indtast E, O, C, R, T, Y: ");
     input = Console.ReadLine();
     if (string.IsNullOrEmpty(input)) continue;
 
@@ -25,14 +25,10 @@ do
 
         case 'O':
             door.SetDoorState(true);
-            Console.WriteLine(Station._state);
-            Console.WriteLine(door.DoorOpen);
             break;
 
         case 'C':
-            Console.WriteLine(Station._state);
             door.SetDoorState(false);
-            Console.WriteLine(Station._state);
             break;
 
         case 'R':
