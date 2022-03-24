@@ -266,10 +266,10 @@ namespace LadeskabClassLibrary
 
             _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
                 this,
-                new DoorStateChangedEventArgs { _DoorOpen = true });
+                new DoorStateChangedEventArgs { _DoorOpen = false });
             // This asserts that uut has connected to the event
             // And handles value correctly
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
 
         #endregion
