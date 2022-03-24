@@ -22,19 +22,24 @@ namespace LadeskabClassLibrary
 
         public void SetID(int newID)
         {
-            if (newID > 0)
+            try
             {
-                OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
-                CurrentID = newID;
+                if (newID > 0)
+                {
+                    OnRFIDDetected(new RFIDDetectedEventArgs { ID = newID });
+                    CurrentID = newID;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException)
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("Ugyldigt RFID prøv igen");
             }
 
         }
-
-
 
         protected virtual void OnRFIDDetected(RFIDDetectedEventArgs e)
         {
