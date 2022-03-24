@@ -42,9 +42,6 @@ namespace LadeskabClassLibrary
                 string currentLog = Insertlog();
                 _uut.DoorUnlockedLog(1);
                 string newlog = Insertlog();
-                string filename = @"logfile.txt";
-                FileInfo f = new FileInfo(filename);
-
 
                 Assert.That(newlog.Length, Is.GreaterThan(currentLog.Length));
 
