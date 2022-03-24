@@ -228,7 +228,8 @@ namespace LadeskabClassLibrary
         [Test]
         public void StationControl_RFIDDETECTEDEVENTRaised_Nothinghappens_CaseDoorOpen()
         {
-            ;
+            
+
 
 
         }
