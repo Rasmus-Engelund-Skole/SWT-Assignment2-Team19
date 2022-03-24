@@ -17,7 +17,7 @@ namespace LadeskabClassLibrary
             DoorOpen
         };
 
-        // Her mangler flere member variable
+        //member variable
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
         public LadeskabState _state { get; private set; }
@@ -30,7 +30,7 @@ namespace LadeskabClassLibrary
 
 
 
-        // Her mangler constructor
+        //constructor
         public StationControl(IDoor Door,
                               IChargeControl Charger,
                               IDisplay Display,
@@ -115,7 +115,7 @@ namespace LadeskabClassLibrary
             }
         }
 
-        // Her mangler de andre trigger handlere
+
         private void DoorStateChangedFunc(bool DoorOpen)
         {
             switch (DoorOpen)
