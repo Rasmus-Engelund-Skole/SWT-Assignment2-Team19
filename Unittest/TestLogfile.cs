@@ -19,7 +19,7 @@ namespace LadeskabClassLibrary
             _uut = new Logfile();
             using (StreamReader sr = File.OpenText(Logfile._filePath))
             {
-                sr.Dispose();
+                File.WriteAllText(Logfile._filePath, String.Empty);
             }
         }
 
