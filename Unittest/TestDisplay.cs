@@ -130,6 +130,32 @@ namespace LadeskabClassLibrary
             var output = stringWriter.ToString();
             Assert.That(output, Is.EqualTo("Døren er Åben\r\n"));
         }
+        [Test]
+        public void Connected()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
 
+            //act
+            _uut.Connected();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Telefonen er tilsluttet\r\n"));
+        }
+        [Test]
+        public void Disconnected()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            //act
+            _uut.Disconnected();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Telefonen er frakoblet\r\n"));
+
+        }
     }
 }
