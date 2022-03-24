@@ -1,4 +1,5 @@
 ﻿using LadeskabClassLibrary;
+
 class Program
 {
     void Main(string[] args)

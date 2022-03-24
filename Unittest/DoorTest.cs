@@ -57,17 +57,27 @@ namespace LadeskabClassLibrary
         [Test]
         public void LockDoor_CorrectValueReceived() //tester at isLock er true
         {
-            _uut.LockDoor();
-
-            Assert.That(_uut.DoorOpen, Is.EqualTo(true));
+            try
+            {
+                _uut.LockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is null);
+            }
         }
 
         [Test]
         public void UnLockDoor_CorrectValueReceived() //tester at isLock er false
         {
-            _uut.DoorOpen = true;
-            _uut.UnlockDoor();
-            Assert.That(_uut.DoorOpen, Is.EqualTo(false));
+            try
+            {
+                _uut.UnlockDoor();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is null);
+            }
         }
 
 
@@ -90,7 +100,7 @@ namespace LadeskabClassLibrary
         [Test]
         public void UnLockDoor_exception() //tester at isLock er false
         {
-            _uut.DoorOpen = false;
+            _uut.DoorOpen = true;
 
             try
             {

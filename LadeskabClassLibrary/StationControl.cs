@@ -116,7 +116,28 @@ namespace LadeskabClassLibrary
         // Her mangler de andre trigger handlere
         private void DoorStateChangedFunc(bool DoorOpen)
         {
+            switch (DoorOpen)
+            {
+                case true:
+                    if (_state == LadeskabState.Available)
+                        _state = LadeskabState.DoorOpen;
+                    else
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    break;
 
+                case false:
+                    if (_state == LadeskabState.DoorOpen)
+                        _state = LadeskabState.Available;
+                    else
+                        throw new InvalidOperationException();
+
+                    break;
+
+            }
+
+                
 
 
         }

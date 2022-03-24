@@ -38,7 +38,7 @@ namespace LadeskabClassLibrary
             return Charger.Connected;
         }
 
-        private void DiplayChargeMessage()
+        private void DisplayChargeMessage()
         {
             
             if (Current > 0 && Current <= 5)
@@ -60,7 +60,7 @@ namespace LadeskabClassLibrary
         private void HandleCurrentChangedEvent(object sender, CurrentEventArgs e)
         {
             Current = e.Current;
-            DiplayChargeMessage();
+            DisplayChargeMessage();
         }
     }
 }

@@ -99,6 +99,7 @@ namespace LadeskabClassLibrary
             //act
             _uut.Charging();
 
+            //assert 
             var output = stringWriter.ToString();
             Assert.That(output, Is.EqualTo("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.\r\n"));
 

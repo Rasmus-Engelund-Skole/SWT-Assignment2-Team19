@@ -222,5 +222,19 @@ namespace LadeskabClassLibrary
 
 
         #endregion
+
+        #region Test of RFIDDetected Switch statement, Case LadeSkabsstate.DoorOpen
+
+        [Test]
+        public void StationControl_RFIDDETECTEDEVENTRaised_Nothinghappens_CaseDoorOpen()
+        {
+            
+
+
+
+        }
+
+
+        #endregion
     }
 }

@@ -22,7 +22,6 @@ namespace LadeskabClassLibrary
         {
             if (!DoorOpen)
             {
-                DoorOpen = true;
             }
             else
             {
@@ -32,9 +31,8 @@ namespace LadeskabClassLibrary
 
         public void UnlockDoor()
         {
-            if (DoorOpen)
+            if (!DoorOpen)
             {
-                DoorOpen = false;
             }
             else
             {
