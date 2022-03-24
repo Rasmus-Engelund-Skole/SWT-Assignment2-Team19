@@ -48,7 +48,7 @@ namespace UsbSimulator.Test
 
             _uut.StartCharge();
 
-            System.Threading.Thread.Sleep(1100);
+            System.Threading.Thread.Sleep(4400);
 
             Assert.That(numValues, Is.GreaterThan(4));
         }
@@ -61,7 +61,7 @@ namespace UsbSimulator.Test
 
             _uut.StartCharge();
 
-            System.Threading.Thread.Sleep(300);
+            System.Threading.Thread.Sleep(1100);
 
             Assert.That(lastValue, Is.LessThan(500.0));
         }
@@ -71,7 +71,7 @@ namespace UsbSimulator.Test
         {
             _uut.StartCharge();
 
-            System.Threading.Thread.Sleep(300);
+            System.Threading.Thread.Sleep(1100);
 
             Assert.That(_uut.CurrentValue, Is.LessThan(500.0));
         }
@@ -112,7 +112,7 @@ namespace UsbSimulator.Test
             pause.Reset();
 
             // Wait for next tick, should send overloaded value
-            pause.WaitOne(300);
+            pause.WaitOne(1100);
 
             Assert.That(lastValue, Is.GreaterThan(500.0));
         }
@@ -140,7 +140,7 @@ namespace UsbSimulator.Test
             pause.Reset();
 
             // Wait for next tick, should send disconnected value
-            pause.WaitOne(300);
+            pause.WaitOne(1100);
 
             Assert.That(lastValue, Is.Zero);
         }
