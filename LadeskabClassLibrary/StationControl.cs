@@ -119,26 +119,39 @@ namespace LadeskabClassLibrary
             switch (DoorOpen)
             {
                 case true:
-                    if (_state == LadeskabState.Available)
+                    try
                     {
-                        _display.DoorOpen();
-                        _state = LadeskabState.DoorOpen;
+                        if (_state == LadeskabState.Available)
+                        {
+                            _display.DoorOpen();
+                            _state = LadeskabState.DoorOpen;
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException();
+                        }
                     }
-                    else
+                    catch (InvalidOperationException)
                     {
-                        throw new InvalidOperationException();
+                        Console.WriteLine("Skabet skal være tilgængeligt, enten er døren åben eller skabet er låst");
                     }
                     break;
 
                 case false:
-                    if (_state == LadeskabState.DoorOpen)
+                    try
                     {
-                        _display.ReadRFID();
-                        _state = LadeskabState.Available;
+                        if (_state == LadeskabState.DoorOpen)
+                        {
+                            _display.ReadRFID();
+                            _state = LadeskabState.Available;
+                        }
+                        else
+                            throw new InvalidOperationException();
                     }
-                    else
-                        throw new InvalidOperationException();
-
+                    catch (InvalidOperationException)
+                    {
+                        Console.WriteLine("Der har været indbrud, ring efter politiet");
+                    }
                     break;
 
             }
