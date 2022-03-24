@@ -33,8 +33,6 @@ namespace LadeskabClassLibrary
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(4)]
-        [TestCase(10)]
-        [TestCase(100)]
         public void PositiveSetid_EventFired(int id) //tester om vi har modtaget eventet i vores rfid subjekt med postive ID'er
         {
             _uut.SetID(id);
@@ -59,7 +57,6 @@ namespace LadeskabClassLibrary
         [TestCase(-1)]
         [TestCase(-2)]
         [TestCase(-4)]
-        [TestCase(-100)]
         public void NegativeSetid_ThrowsException(int id) //tester om exception bliver kastet ved negative værdier til ID
         {
             try
