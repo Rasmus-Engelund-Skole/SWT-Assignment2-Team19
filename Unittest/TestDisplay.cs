@@ -89,7 +89,7 @@ namespace LadeskabClassLibrary
             var output = stringWriter.ToString();
             Assert.That(output, Is.EqualTo("RFID Fejl\r\n"));
         }
-        
+
         [Test]
         public void Charging()
         {
@@ -104,5 +104,32 @@ namespace LadeskabClassLibrary
             Assert.That(output, Is.EqualTo("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.\r\n"));
 
         }
+        [Test]
+        public void CloseDoor()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            //act
+            _uut.CloseDoor();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Døren er Åben, Den skal lukkes inden skabet kan låses.\r\n"));
+        }
+        [Test]
+        public void DoorOpen()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            //act
+            _uut.DoorOpen();
+
+            //assert
+            var output = stringWriter.ToString();
+            Assert.That(output, Is.EqualTo("Døren er Åben\r\n"));
+        }
+
     }
 }
