@@ -122,7 +122,10 @@ namespace LadeskabClassLibrary
             {
                 case true:
                     if (_state == LadeskabState.Available)
+                    {
+                        _display.ConnectPhone();
                         _state = LadeskabState.DoorOpen;
+                    }
                     else
                     {
                         throw new InvalidOperationException();
@@ -131,7 +134,10 @@ namespace LadeskabClassLibrary
 
                 case false:
                     if (_state == LadeskabState.DoorOpen)
+                    {
+                        _display.ReadRFID();
                         _state = LadeskabState.Available;
+                    }
                     else
                         throw new InvalidOperationException();
 

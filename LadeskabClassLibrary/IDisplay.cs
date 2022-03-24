@@ -14,5 +14,7 @@ namespace LadeskabClassLibrary
         void ReadRFID();
         void RFIDError();
         void Charging();
+        void CloseDoor();
+        void DoorOpen();
     }
 }

@@ -33,6 +33,14 @@ namespace LadeskabClassLibrary
         {
             Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
         }
+        public void CloseDoor()
+        {
+            Console.WriteLine("Døren er Åben, Den skal lukkes inden skabet kan låses.");
+        }
+        public void DoorOpen()
+        {
+            Console.WriteLine("Døren er Åben");
+        }
 
 
     }

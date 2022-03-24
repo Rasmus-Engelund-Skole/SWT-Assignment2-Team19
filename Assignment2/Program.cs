@@ -1,13 +1,13 @@
 ﻿using LadeskabClassLibrary;
 
-class Program
-{
-    void Main(string[] args)
-    {
         // Assemble your system here from all the classes
         var door = new Door();
         var rfidReader = new RFIDReader(); 
-
+        var display = new Display();
+        var logfile = new Logfile();
+        var usbcharger = new UsbChargerSimulator();
+        var Charger = new ChargeControl(usbcharger,display);
+        var Station = new StationControl(door, Charger, display, logfile, rfidReader);
 
         bool finish = false;
         do
@@ -25,10 +25,14 @@ class Program
 
                 case 'O':
                     door.SetDoorState(true);
+                    Console.WriteLine(Station._state);
+                    Console.WriteLine(door.DoorOpen);
                     break;
 
                 case 'C':
+                    Console.WriteLine(Station._state);
                     door.SetDoorState(false);
+                    Console.WriteLine(Station._state);
                     break;
 
                 case 'R':
@@ -44,5 +48,3 @@ class Program
             }
 
         } while (!finish);
-    }
-}
