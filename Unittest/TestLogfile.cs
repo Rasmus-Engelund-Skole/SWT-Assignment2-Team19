@@ -17,10 +17,7 @@ namespace LadeskabClassLibrary
         public void Setup()
         {
             _uut = new Logfile();
-            using (StreamReader sr = File.OpenText(Logfile._filePath))
-            {
-                File.WriteAllText(Logfile._filePath, String.Empty);
-            }
+
         }
 
         [Test]
