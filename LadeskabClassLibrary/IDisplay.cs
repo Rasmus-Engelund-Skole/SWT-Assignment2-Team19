@@ -16,5 +16,7 @@ namespace LadeskabClassLibrary
         void Charging();
         void CloseDoor();
         void DoorOpen();
+        void Connected();
+        void Disconnected();
     }
 }

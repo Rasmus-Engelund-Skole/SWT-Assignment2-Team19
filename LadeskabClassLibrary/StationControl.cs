@@ -92,7 +92,7 @@ namespace LadeskabClassLibrary
                     break;
 
                 case LadeskabState.DoorOpen:
-                    // Ignore
+                    _display.CloseDoor();
                     break;
 
                 case LadeskabState.Locked:
@@ -123,7 +123,7 @@ namespace LadeskabClassLibrary
                 case true:
                     if (_state == LadeskabState.Available)
                     {
-                        _display.ConnectPhone();
+                        _display.DoorOpen();
                         _state = LadeskabState.DoorOpen;
                     }
                     else

@@ -41,6 +41,14 @@ namespace LadeskabClassLibrary
         {
             Console.WriteLine("Døren er Åben");
         }
+        public void Connected()
+        {
+            Console.WriteLine("Telefonen er tilsluttet");
+        }
+        public void Disconnected()
+        {
+            Console.WriteLine("Telefonen er frakoblet");
+        }
 
 
     }
