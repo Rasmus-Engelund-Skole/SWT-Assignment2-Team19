@@ -43,11 +43,24 @@ namespace LadeskabClassLibrary
 
         [Test]
         [TestCase(0)]
+        public void ZeroSetid_ThrowsException(int id) //tester om exception bliver kastet ved ID = 0
+        {
+            try
+            {
+                _uut.SetID(id);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is ArgumentOutOfRangeException);
+            }
+        }
+
+        [Test]
         [TestCase(-1)]
         [TestCase(-2)]
         [TestCase(-4)]
         [TestCase(-100)]
-        public void NegativeSetid_EventFired(int id) //tester om exception bliver kastet ved dårlig værdier til ID
+        public void NegativeSetid_ThrowsException(int id) //tester om exception bliver kastet ved negative værdier til ID
         {
             try
             {
