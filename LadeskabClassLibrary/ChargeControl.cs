@@ -11,7 +11,7 @@ namespace LadeskabClassLibrary
         public bool Connected { get; set; }
         private IUsbCharger Charger { get; set; }
         private IDisplay Display { get; set; }
-        
+        private bool Messageshown = false;
 
         public double Current;
 
@@ -30,6 +30,7 @@ namespace LadeskabClassLibrary
         public void StopCharge()
         {
             Charger.StopCharge();
+            Messageshown = false;
         }
 
         public bool IsConnected()
@@ -42,11 +43,17 @@ namespace LadeskabClassLibrary
             
             if (Current > 0 && Current <= 5)
             {
-                Display.ConnectPhone();
+                Display.DoneCharging();
+                
+                StopCharge();
             }
             else if (Current > 5 && Current <= 500)
             {
-                Display.Charging();
+                if (Messageshown == false)
+                {
+                    Display.Charging();
+                    Messageshown = true;
+                }
             }
             else if (Current > 500)
             {
