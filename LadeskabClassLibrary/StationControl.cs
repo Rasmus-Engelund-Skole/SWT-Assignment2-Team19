@@ -80,8 +80,6 @@ namespace LadeskabClassLibrary
                         _charger.StartCharge();
                         _oldId = id;
                         _logfile.DoorLockedLog(id);
-
-                        _display.Charging(); //Ladeskab optaget
                         _state = LadeskabState.Locked;
                     }
                     else

@@ -25,6 +25,7 @@ namespace LadeskabClassLibrary
         public void StartCharge()
         {
             Charger.StartCharge();
+            DisplayChargeMessage();
         }
 
         public void StopCharge()
@@ -59,7 +60,6 @@ namespace LadeskabClassLibrary
         private void HandleCurrentChangedEvent(object sender, CurrentEventArgs e)
         {
             Current = e.Current;
-            DisplayChargeMessage();
         }
     }
 }

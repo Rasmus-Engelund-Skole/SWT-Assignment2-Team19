@@ -23,7 +23,7 @@ namespace LadeskabClassLibrary
         }
         public void ReadRFID()
         {
-            Console.WriteLine("Indlæs RFID"); //Should be used with DoorClosed()
+            Console.WriteLine("Døren er lukket, Indlæs RFID"); //Should be used with DoorClosed()
         }
         public void RFIDError()
         {
