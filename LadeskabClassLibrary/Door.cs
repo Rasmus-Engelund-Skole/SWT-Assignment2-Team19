@@ -20,23 +20,37 @@ namespace LadeskabClassLibrary
 
         public void LockDoor()
         {
-            if (!DoorOpen)
+            try
             {
+                if (!DoorOpen)
+                {
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException)
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("Døren er åben, luk døren, prøv igen");
             }
         }
 
         public void UnlockDoor()
         {
-            if (!DoorOpen)
+            try
             {
+                if (!DoorOpen)
+                {
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else
+            catch (ArgumentOutOfRangeException)
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("Døren er åben, luk døren, prøv igen");
             }
         }
 

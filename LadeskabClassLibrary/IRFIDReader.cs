@@ -19,4 +19,5 @@ namespace LadeskabClassLibrary
         // Event triggered on new ID value
         event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
     }
+
 }
