@@ -44,7 +44,6 @@ namespace LadeskabClassLibrary
         {
             if (DoorState != DoorOpen)
             {
-                DoorOpen = DoorState;
                 OnDoorStateChanged(new DoorStateChangedEventArgs { _DoorOpen = DoorState });
             }
 
