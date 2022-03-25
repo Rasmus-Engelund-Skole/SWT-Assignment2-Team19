@@ -21,7 +21,8 @@ namespace LadeskabClassLibrary
                 using (StreamWriter writer = File.AppendText(_filePath))
                 {
                     writer.WriteLine(DateTime.Now);
-                    writer.WriteLine($"Skab låst op med RFID: {id}", id);
+                    writer.WriteLine($"Skab låst op med RFID: {id}\n", id);
+                    
 
                 }
             }
