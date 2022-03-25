@@ -124,6 +124,7 @@ namespace LadeskabClassLibrary
                         if (_state == LadeskabState.Available)
                         {
                             _display.DoorOpen();
+                            _door.DoorOpen = DoorOpen;
                             _state = LadeskabState.DoorOpen;
                         }
                         else
@@ -143,6 +144,7 @@ namespace LadeskabClassLibrary
                         if (_state == LadeskabState.DoorOpen)
                         {
                             _display.ReadRFID();
+                            _door.DoorOpen = DoorOpen;
                             _state = LadeskabState.Available;
                         }
                         else
