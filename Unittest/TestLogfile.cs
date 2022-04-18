@@ -68,5 +68,18 @@ namespace LadeskabClassLibrary
             return log;
             
         }
+
+        [Test] //testing if text added and text in logfile is the same
+        public void TestLogText()
+        {
+            _uut.DoorUnlockedLog(1);
+            string currentLog = Insertlog();
+
+            StreamReader sr = new StreamReader(Logfile._filePath);
+
+            string line = sr.ReadToEnd();
+
+            Assert.That(currentLog, Is.EqualTo(line));
+        }
     }
 }
