@@ -60,9 +60,25 @@ namespace LadeskabClassLibrary
             Assert.That(result, Is.EqualTo(connectionSts));
         }
 
+        [TestCase(Int32.MinValue)]
+        [TestCase(-2)]
+        [TestCase(-1)]
+        [TestCase(0)]
+        public void HandleCurrentChangedEvent_Current0(double newCurrent)
+        {
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
+            _fakeDisplay.DidNotReceive().Charging();
+            _fakeDisplay.DidNotReceive().DisconnectPhone();
+            _fakeDisplay.DidNotReceive().DoneCharging();
+            _fakeDisplay.DidNotReceive().ConnectPhone();
 
+        }
+
+        [TestCase(0.1)]
         [TestCase(1)]
-        public void HandleCurrentChangedEvent_CurrentLessThan5(double newCurrent)
+        [TestCase(4)]
+        [TestCase(5)]
+        public void HandleCurrentChangedEvent_Current5orLess(double newCurrent)
         {
             _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
             _fakeDisplay.DidNotReceive().Charging();
@@ -71,11 +87,15 @@ namespace LadeskabClassLibrary
 
         }
 
-        
+
         [Test]
-        public void HandleCurrentChangedEvent_Current100()
+        [TestCase(5.1)]
+        [TestCase(6)]
+        [TestCase(300)]
+        [TestCase(500)]
+        public void HandleCurrentChangedEvent_CurrentCharging(double newCurrent)
         {
-            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = 100 });
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
             _fakeDisplay.Received().Charging();
             _fakeDisplay.DidNotReceive().DisconnectPhone();
             _fakeDisplay.DidNotReceive().ConnectPhone();
@@ -83,9 +103,13 @@ namespace LadeskabClassLibrary
         }
 
         [Test]
-        public void HandleCurrentChangedEvent_currentOver500()
+        [TestCase(500.1)]
+        [TestCase(525)]
+        [TestCase(600)]
+        [TestCase(Int32.MaxValue)]
+        public void HandleCurrentChangedEvent_currentOver500(double newCurrent)
         {
-            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = 600 });
+            _fakeCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
             _fakeDisplay.Received().DisconnectPhone();
             _fakeDisplay.DidNotReceive().Charging();
         }
