@@ -32,18 +32,6 @@ namespace LadeskabClassLibrary
 
         }
 
-        #region VirginValues _uut
-        [Test]
-        public void StationControl_VirginValues_CorrectValues()
-        {
-
-            Assert.That(_uut._oldId, Is.EqualTo(0));
-            Assert.That(_fakeChargeControl.Connected, Is.EqualTo(false));
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
-
-        }
-        #endregion
-
         #region Test of RFIDDetected Swicth statement, Case Ladeskabsstate.Available
 
         #region RFIDEvent called but no functions called
@@ -56,9 +44,7 @@ namespace LadeskabClassLibrary
 
             _fakeDoor.DidNotReceive().LockDoor();
             _fakeChargeControl.DidNotReceive().StartCharge();
-            Assert.That(_uut._oldId, Is.EqualTo(0));
-            _fakeLogfile.DidNotReceive().DoorLockedLog(_uut._oldId);
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
+            _fakeLogfile.DidNotReceive().DoorLockedLog(1);
         }
         #endregion
 
@@ -85,33 +71,9 @@ namespace LadeskabClassLibrary
             _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(this, new RFIDDetectedEventArgs { ID = 1 });
 
             _fakeDoor.Received().LockDoor();
-            _fakeLogfile.Received().DoorLockedLog(_uut._oldId);
+            _fakeLogfile.Received().DoorLockedLog(1);
             _fakeChargeControl.Received().StartCharge();
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
-        #endregion
-
-        #region RFIDEVent reception test
-        [Test]
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(3)]
-        [TestCase(int.MaxValue)]
-        public void StationControl_RecievesIDfromRFID(int id)
-        {
-            //Make sure we take the right way through the RFIDDetected switch
-            _fakeChargeControl.Connected = true;
-            //Raise Event in fake
-            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
-                this,
-                new RFIDDetectedEventArgs { ID = id });
-
-            // This asserts that uut has connected to the event
-            // And handles value correctly
-            Assert.That(_uut._oldId, Is.EqualTo(id));
-        }
-
-
         #endregion
 
         #endregion
@@ -139,35 +101,8 @@ namespace LadeskabClassLibrary
 
             _fakeChargeControl.Received(1).StopCharge();
             _fakeDoor.Received().UnlockDoor();
-            _fakeLogfile.Received().DoorUnlockedLog(_uut._oldId);
+            _fakeLogfile.Received().DoorUnlockedLog(1);
             _fakeDisplay.Received().DisconnectPhone();
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
-        }
-        #endregion
-
-        #region Test that OldId equals Id
-        [Test]
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(3)]
-        [TestCase(int.MaxValue)]
-        public void StationControl_RFIDDETECTEDEVENTRaised_OldId_isequal_toNewId_CaseLocked(int id)
-        {
-            _fakeChargeControl.Connected = true;
-            _fakeDoor.DoorOpen = false;
-
-            // Lock The phone in the Unit, set _state to locked
-            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
-                this,
-                new RFIDDetectedEventArgs { ID = id});
-            // Try to remove the phone from the locked uut, 
-            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
-                this,
-                new RFIDDetectedEventArgs { ID = id });
-
-            // This asserts that uut has connected to the event
-            // And handles value correctly
-            Assert.That(_uut._oldId, Is.EqualTo(id));
         }
         #endregion
 
@@ -192,9 +127,8 @@ namespace LadeskabClassLibrary
 
             _fakeChargeControl.DidNotReceive().StopCharge();
             _fakeDoor.DidNotReceive().UnlockDoor();
-            _fakeLogfile.DidNotReceive().DoorUnlockedLog(_uut._oldId);
+            _fakeLogfile.DidNotReceive().DoorUnlockedLog(1);
             _fakeDisplay.DidNotReceive().DisconnectPhone();
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
 
         [Test]
@@ -221,26 +155,6 @@ namespace LadeskabClassLibrary
 
         #endregion
 
-        #region Test of RFIDDetected Switch statement, Case LadeSkabsstate.DoorOpen
-
-        [Test]
-        public void StationControl_RFIDDETECTEDEVENTRaised_Nothinghappens_CaseDoorOpen()
-        {
-            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
-            this,
-            new DoorStateChangedEventArgs { _DoorOpen = true });
-            _fakeRFIDReader.RFIDDetectedEvent += Raise.EventWith<RFIDDetectedEventArgs>(
-            this,
-            new RFIDDetectedEventArgs { ID = 1 });
-
-
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
-
-        }
-
-
-        #endregion
-
         #region Test of DoorStateChangedFunc Switch
 
         #region DoorstatechangedEvent Called _state changed
@@ -263,19 +177,6 @@ namespace LadeskabClassLibrary
 
         }
 
-
-        [Test]
-        public void StationControl_RecievesTrueFromDoorevent()
-        {
-            //Raise Event in fake
-            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
-                this,
-                new DoorStateChangedEventArgs { _DoorOpen = true });
-            // This asserts that uut has connected to the event
-            // And handles value correctly
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.DoorOpen));
-        }
-
         [Test]
         public void StationControl_RaisesEvent_ExceptionThrownDuetoInvalidcall_OnStateDoorOpen()
         {
@@ -295,22 +196,6 @@ namespace LadeskabClassLibrary
                 Assert.IsTrue(ex is InvalidOperationException);
             }
 
-        }
-
-        [Test]
-        public void StationControl_RecievesTrueThenFalseFromDoorevent()
-        {
-            //Raise Event in fake
-            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
-                this,
-                new DoorStateChangedEventArgs { _DoorOpen = true });
-
-            _fakeDoor.DoorStateChanged += Raise.EventWith<DoorStateChangedEventArgs>(
-                this,
-                new DoorStateChangedEventArgs { _DoorOpen = false });
-            // This asserts that uut has connected to the event
-            // And handles value correctly
-            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
 
         #endregion
