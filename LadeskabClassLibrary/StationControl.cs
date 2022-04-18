@@ -20,13 +20,13 @@ namespace LadeskabClassLibrary
         //member variable
         public event EventHandler<RFIDDetectedEventArgs> RFIDDetectedEvent;
         public event EventHandler<DoorStateChangedEventArgs> DoorStateChanged;
-        public LadeskabState _state { get; private set; }
+        private LadeskabState _state { get; set; }
         private IChargeControl _charger;
         private IDoor _door;
         private IDisplay _display;
         private ILogfile _logfile;
         public IRFIDReader _reader;
-        public int _oldId;
+        private int _oldId;
 
 
 
