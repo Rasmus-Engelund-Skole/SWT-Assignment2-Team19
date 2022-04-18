@@ -12,7 +12,6 @@ namespace LadeskabClassLibrary
     {
         // member variables to hold uut and fakes
         private StationControl _uut;
-        private ITimeProvider _fakeTimeProvider;
         private IDoor _fakeDoor;
         public IChargeControl _fakeChargeControl;
         private IRFIDReader _fakeRFIDReader;
@@ -23,7 +22,6 @@ namespace LadeskabClassLibrary
         public void Setup()
         {
             // Create the fake stubs and mocks
-            _fakeTimeProvider = Substitute.For<ITimeProvider>();
             _fakeDoor = Substitute.For<IDoor>();
             _fakeChargeControl = Substitute.For<IChargeControl>();
             _fakeLogfile = Substitute.For<ILogfile>();
